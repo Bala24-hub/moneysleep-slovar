@@ -131,7 +131,10 @@ async function tts(text: string): Promise<{ audio: Buffer; cost: number | null }
 // ---------------------------------------------------------------- журнал и прослушка
 const logPath = (lang: string) => join(import.meta.dirname, 'log', `${lang}.json`);
 const readLog = (lang: string): Log => (existsSync(logPath(lang)) ? JSON.parse(readFileSync(logPath(lang), 'utf8')) : {});
-const writeLog = (lang: string, log: Log) => writeFileSync(logPath(lang), JSON.stringify(log, null, 2) + '\n');
+const writeLog = (lang: string, log: Log) => {
+  mkdirSync(dirname(logPath(lang)), { recursive: true });
+  writeFileSync(logPath(lang), JSON.stringify(log, null, 2) + '\n');
+};
 
 /** docs/audio-preview/<lang>-<комната>.mp3 — всё, что озвучено скриптом, в порядке pack.json. */
 async function buildPreviews(lang: string): Promise<string[]> {
