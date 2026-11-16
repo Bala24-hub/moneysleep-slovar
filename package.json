@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-packs.ts",
     "scaffold-pack": "node scripts/scaffold-pack.ts",
-    "screenshots": "node scripts/screenshots.mjs"
+    "screenshots": "node scripts/screenshots.mjs",
+    "voice": "NODE_USE_ENV_PROXY=1 node --disable-warning=UNDICI-EHPA tools/voice/voice.ts"
   },
   "devDependencies": {
     "@types/node": "22.19.3",

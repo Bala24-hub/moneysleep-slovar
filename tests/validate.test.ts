@@ -24,3 +24,10 @@ describe('валидатор пакетов', () => {
     expect(validateLang('xx-XX').errors[0].what).toBe('pack');
   });
 });
+
+describe('es-419 по таблице Герхарда', () => {
+  it('все тексты есть, артикли слова (el/la) и формы (un/una) верные', () => {
+    const r = validateLang('es-419');
+    expect(r.errors.filter((e) => e.what !== 'audio')).toEqual([]);
+  });
+});

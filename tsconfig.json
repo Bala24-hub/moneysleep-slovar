@@ -15,5 +15,5 @@
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "scripts", "tests", "vite.config.ts", "sw"]
+  "include": ["src", "scripts", "tests", "tools", "vite.config.ts", "sw"]
 }

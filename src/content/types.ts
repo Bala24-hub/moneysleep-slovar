@@ -66,8 +66,10 @@ export interface Pack {
   lang: string;
   version: number;
   audioDir: string;
-  /** Слово всегда пишется с артиклем (de-DE, es-419). Проверяет валидатор. */
+  /** Слово всегда пишется с артиклем (de-DE: der/die/das, es-419: el/la). Проверяет валидатор. */
   articles: string[];
+  /** Артикли формы «это …» (es-419: un/una — «Esto es una taza»). Пусто — не проверяется. */
+  formArticles: string[];
   words: Record<string, PackWord>;
   /** Целые фразы этапов «Проверка» и «Фразы»: check.<вид>.<id>, phrase.<вид>.<id>. */
   phrases: Record<string, Line>;

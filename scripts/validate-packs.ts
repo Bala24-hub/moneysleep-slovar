@@ -44,15 +44,16 @@ export function validateLang(lang: string): LangReport {
     if (issues.length === 0) rep.complete++;
     rep.errors.push(...issues);
   };
-  const hasArticle = (t: string) => pack.articles.length === 0 || pack.articles.some((a) => t.startsWith(a + ' '));
+  const hasArticle = (t: string, arts: string[]) => arts.length === 0 || arts.some((a) => t.startsWith(a + ' '));
 
   for (const id of exp.words) {
     const w = pack.words[id];
     count(lineIssues(id, w, pack));
     count(lineIssues(formId(id), w?.form, pack));
-    for (const [t, key] of [[w?.text, id], [w?.form?.text, formId(id)]] as const)
-      if (t && !hasArticle(t))
-        rep.errors.push({ id: key, what: 'article', detail: `«${t}» без артикля (${pack.articles.join('/')})` });
+    const checks = [[w?.text, id, pack.articles ?? []], [w?.form?.text, formId(id), pack.formArticles ?? []]] as const;
+    for (const [t, key, arts] of checks)
+      if (t && !hasArticle(t, arts))
+        rep.errors.push({ id: key, what: 'article', detail: `«${t}» без артикля (${arts.join('/')})` });
   }
   // Вопросы «Проверки»: нужен хотя бы один вид на слово, второй — желательно.
   const groups = new Map<string, string[]>();

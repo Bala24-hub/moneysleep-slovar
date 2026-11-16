@@ -3,6 +3,7 @@
   "version": 1,
   "audioDir": "assets/audio/en-US",
   "articles": [],
+  "formArticles": [],
   "words": {
     "kitchen.fridge": {
       "text": "fridge",
