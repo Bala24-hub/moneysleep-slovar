@@ -2,7 +2,7 @@
 import type { App, Screen } from '../app.ts';
 import type { Said } from '../content/speech.ts';
 import type { RoomDef, WordDef } from '../content/types.ts';
-import { checkPool, maxLevel, wordsInScene } from '../progress/levels.ts';
+import { checkPool, maxLevel, sceneChain, wordsInScene } from '../progress/levels.ts';
 import {
   STAGES, firstOpenStage, phraseWords, pickCheckTarget, pickPhraseTarget, shuffle,
   type StageId, type StageState,
@@ -28,6 +28,9 @@ export class RoomScreen implements Screen {
   private card: HTMLDivElement;
   private viewport: HTMLDivElement;
   private backBtn: HTMLButtonElement;
+  private get current(): SceneView | null {
+    return this.stack.at(-1)?.view ?? null;
+  }
   private bubble: HTMLButtonElement;
   private bubbleText: HTMLSpanElement;
   private coinsEl: HTMLDivElement;
@@ -35,7 +38,12 @@ export class RoomScreen implements Screen {
   private stageBtns = {} as Record<StageId, HTMLButtonElement>;
   private mo: Mo;
   private views = new Map<string, SceneView>();
-  private current: SceneView | null = null;
+  /** Открытые сцены: комната внизу, крупные планы слоями поверх (любая глубина). */
+  private stack: { view: SceneView; layer: HTMLElement | null; panel: HTMLElement | null; from: FRect; to: FRect }[] = [];
+  private homeBtn: HTMLButtonElement;
+  private idleTimer = 0;
+  private pinch = new Map<number, { x: number; y: number }>();
+  private pinchStart = 0;
   private stage: StageId = 'words';
   private states: Record<StageId, StageState>;
   private gen = 0;
@@ -53,6 +61,10 @@ export class RoomScreen implements Screen {
 
     const home = h('button', { class: 'round home-btn', 'aria-label': 'home', html: ICON.home });
     onTap(home, () => this.goHome());
+    this.homeBtn = home;
+    // «назад» из крупного плана стоит на месте домика (домик в это время скрыт)
+    this.backBtn = h('button', { class: 'round back-btn hidden', 'aria-label': 'back', html: ICON.arrowBack });
+    onTap(this.backBtn, () => void this.back());
     const stagesEl = h('div', { class: 'stages' });
     STAGES.forEach((id, i) => {
       if (i > 0) stagesEl.append(h('span', { class: 'stage-dots' }));
@@ -64,16 +76,15 @@ export class RoomScreen implements Screen {
     });
     this.coinsNum = h('b', {}, String(app.progress.coins));
     this.coinsEl = h('div', { class: 'coins' }, h('span', { class: 'coin', html: COIN }), this.coinsNum);
-    const top = h('div', { class: 'topbar' }, home, stagesEl, this.coinsEl);
+    const top = h('div', { class: 'topbar' }, h('div', { class: 'top-left' }, home, this.backBtn), stagesEl, this.coinsEl);
 
     this.viewport = h('div', { class: 'viewport' });
-    this.backBtn = h('button', { class: 'round back-btn hidden', 'aria-label': 'back', html: ICON.back });
-    onTap(this.backBtn, () => this.zoomOutToStart());
     this.bubbleText = h('span', { class: 'bubble-text' });
     this.bubble = h('button', { class: 'bubble hidden', 'aria-label': 'repeat' }, h('span', { class: 'bubble-ic', html: ICON.speaker }), this.bubbleText);
     onTap(this.bubble, () => this.repeatQuestion());
     onTap(this.mo.el, () => this.repeatQuestion());
-    this.card = h('div', { class: 'card' }, this.viewport, this.backBtn, this.bubble);
+    this.card = h('div', { class: 'card' }, this.viewport, this.bubble);
+    this.listenPinch();
     this.area = h('div', { class: 'stage-area' }, this.card, this.mo.el);
     this.el = h('div', { class: 'screen room' }, h('div', { class: 'sky' }), top, this.area);
 
@@ -151,7 +162,7 @@ export class RoomScreen implements Screen {
     this.easy = 0;
     this.roundN = 0;
     this.recent = [];
-    this.backBtn.classList.add('hidden');
+    this.updateBack();
     for (const v of this.views.values()) {
       v.spotlight(null);
       v.clearFx();
@@ -175,65 +186,135 @@ export class RoomScreen implements Screen {
     return v;
   }
 
+  /**
+   * Показать сцену. Крупный план кладётся слоем поверх родителя: родитель сзади серый и высветленный,
+   * панель «вырастает» из своего места на родительской картинке. Глубина любая.
+   * empty (этап «Фразы») — отдельная сцена на всю карточку.
+   */
   private async showScene(sceneId: string, empty = false): Promise<SceneView> {
     const next = this.view(sceneId, empty);
-    const cur = this.current;
-    if (cur === next) return next;
-    this.current = next;
-    next.el.style.transform = '';
-    next.el.style.transition = '';
-    if (!cur) {
-      next.el.style.opacity = '1';
-      this.viewport.append(next.el);
-      return next;
+    if (this.current === next) return next;
+    const chain = empty ? [sceneId] : sceneChain(this.room, sceneId);
+    const have = this.stack.map((x) => x.view);
+    let k = 0;
+    while (k < have.length && k < chain.length && have[k] === this.view(chain[k], empty && k === 0)) k++;
+    if (k === 0) {
+      await this.resetTo(this.view(chain[0], empty));
+      k = 1;
     }
-    const zf = next.def.zoomFrom;
-    if (zf && next.def.parent === cur.sceneId) {
-      // наезд: комната → крупный план
-      zoomTransform(cur, zf, true);
-      await sleep(430);
-      next.el.style.opacity = '0';
-      this.viewport.append(next.el);
-      await nextFrameP();
-      next.el.style.transition = 'opacity .28s ease';
-      next.el.style.opacity = '1';
-      await sleep(300);
-      cur.el.remove();
-      cur.el.style.transition = 'none';
-      cur.el.style.transform = '';
-    } else if (cur.def.zoomFrom && cur.def.parent === sceneId) {
-      // отъезд: крупный план → комната
-      next.el.style.transition = 'none';
-      zoomTransform(next, cur.def.zoomFrom, false);
-      next.el.style.opacity = '1';
-      this.viewport.prepend(next.el);
-      await nextFrameP();
-      cur.el.style.transition = 'opacity .25s ease';
-      cur.el.style.opacity = '0';
-      await sleep(240);
-      cur.el.remove();
-      cur.el.style.opacity = '1';
-      next.el.style.transition = 'transform .5s cubic-bezier(.5,0,.25,1)';
-      next.el.style.transform = '';
-      await sleep(500);
-    } else {
-      next.el.style.opacity = '0';
-      this.viewport.append(next.el);
-      await nextFrameP();
-      next.el.style.transition = 'opacity .3s ease';
-      next.el.style.opacity = '1';
-      await sleep(320);
-      cur.el.remove();
-    }
+    while (this.stack.length > k) await this.popLayer(this.stack.length - 1 === k);
+    for (let i = k; i < chain.length; i++) await this.pushLayer(this.view(chain[i]));
+    this.updateBack();
     return next;
   }
 
-  private async zoomOutToStart() {
-    if (!this.current || this.current.sceneId === this.room.start) return;
+  /** Сцена на всю карточку (комната или «Фразы»), остальное убираем. */
+  private async resetTo(v: SceneView) {
+    const old = this.stack;
+    this.stack = [{ view: v, layer: null, panel: null, from: FULL, to: FULL }];
+    v.el.style.opacity = '0';
+    this.viewport.append(v.el);
+    await nextFrameP();
+    v.el.style.transition = 'opacity .3s ease';
+    v.el.style.opacity = '1';
+    if (old.length) await sleep(320);
+    for (const x of old) (x.layer ?? x.view.el).remove();
+    v.el.style.transition = '';
+  }
+
+  private async pushLayer(v: SceneView) {
+    const parent = this.stack.at(-1)!;
+    const zf = v.def.zoomFrom ?? [0, 0, parent.view.def.width, parent.view.def.height];
+    const pw = parent.view.def.width, ph = parent.view.def.height;
+    const pr = parent.to;
+    const from: FRect = { x: pr.x + (zf[0] / pw) * pr.w, y: pr.y + (zf[1] / ph) * pr.h, w: (zf[2] / pw) * pr.w, h: (zf[3] / ph) * pr.h };
+    const W = PANEL_W - 0.06 * (this.stack.length - 1);
+    const to: FRect = { x: (1 - W) / 2, y: (1 - W) / 2, w: W, h: W };
+    const veil = h('div', { class: 'zoom-veil' });
+    onTap(veil, () => {
+      if (this.stage === 'words') void this.back();
+    });
+    const panel = h('div', { class: 'zoom-panel' }, v.el);
+    const layer = h('div', { class: 'zoom-layer' }, veil, panel);
+    placeRect(panel, to);
+    v.el.style.opacity = '1';
+    v.el.style.transform = '';
+    this.viewport.append(layer);
+    this.stack.push({ view: v, layer, panel, from, to });
+    this.updateBack();
+    await animateRect(panel, veil, from, to, true);
+  }
+
+  private async popLayer(animate = true) {
+    const top = this.stack.pop()!;
+    this.updateBack();
+    if (!top.layer || !top.panel) return;
+    if (animate) await animateRect(top.panel, top.layer.querySelector('.zoom-veil') as HTMLElement, top.to, top.from, false);
+    top.layer.remove();
+  }
+
+  /** «Назад» из крупного плана: стрелка, тап по серому фону, щипок двумя пальцами. */
+  private async back() {
+    if (this.stack.length < 2 || this.stage !== 'words') return;
     this.app.touched();
     this.app.audio.stop();
-    this.backBtn.classList.add('hidden');
-    await this.showScene(this.room.start);
+    this.stopNudge();
+    this.current?.clearCaption();
+    await this.popLayer();
+    this.updateBack();
+  }
+
+  /** Стрелка видна только в «Словах» при открытом крупном плане; домик в это время скрыт. */
+  private updateBack() {
+    const zoomed = this.stack.length > 1 && this.stage === 'words';
+    this.backBtn.classList.toggle('hidden', !zoomed);
+    this.homeBtn.classList.toggle('hidden', zoomed);
+    this.stopNudge();
+    if (zoomed) this.armNudge();
+  }
+
+  /** Подсказка выхода: стрелка мягко покачивается, если 5 с ничего не нажимали. */
+  private armNudge() {
+    clearTimeout(this.idleTimer);
+    this.idleTimer = window.setTimeout(() => this.nudge(), NUDGE_IDLE_MS);
+  }
+
+  private nudge() {
+    if (this.stack.length > 1 && this.stage === 'words') this.backBtn.classList.add('nudge');
+  }
+
+  private stopNudge() {
+    clearTimeout(this.idleTimer);
+    this.backBtn.classList.remove('nudge');
+  }
+
+  /** Щипок двумя пальцами (свести) — назад. Pointer events + жесты Safari. */
+  private listenPinch() {
+    const dist = () => {
+      const [a, b] = [...this.pinch.values()];
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    };
+    this.card.addEventListener('pointerdown', (e) => {
+      this.pinch.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (this.pinch.size === 2) this.pinchStart = dist();
+    }, true);
+    this.card.addEventListener('pointermove', (e) => {
+      if (!this.pinch.has(e.pointerId)) return;
+      this.pinch.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (this.pinch.size === 2 && this.pinchStart > 0 && dist() / this.pinchStart < 0.7) {
+        this.pinchStart = 0;
+        void this.back();
+      }
+    });
+    const up = (e: PointerEvent) => {
+      this.pinch.delete(e.pointerId);
+      if (this.pinch.size < 2) this.pinchStart = 0;
+    };
+    this.card.addEventListener('pointerup', up);
+    this.card.addEventListener('pointercancel', up);
+    this.card.addEventListener('gestureend', (e) => {
+      if ((e as unknown as { scale: number }).scale < 0.75) void this.back();
+    });
   }
 
   /** Уровень, открытый в комнате сейчас (1 — предметы, 2 — детали). */
@@ -252,6 +333,10 @@ export class RoomScreen implements Screen {
 
   private onSceneTap(id: string | null, _ev: PointerEvent) {
     this.app.touched();
+    if (this.backBtn.classList.contains('nudge') || this.stack.length > 1) {
+      this.stopNudge();
+      if (this.stack.length > 1 && this.stage === 'words') this.armNudge();
+    }
     if (!id) return;
     if (this.stage === 'words') void this.wordsTap(id);
     else if (this.stage === 'check') void this.checkTap(id);
@@ -270,12 +355,11 @@ export class RoomScreen implements Screen {
     const g = this.gen;
     let v = this.current!;
     const w = this.word(id);
-    if (w.scene !== v.sceneId && this.room.scenes[w.scene]?.parent === v.sceneId) {
+    if (w.scene !== v.sceneId && sceneChain(this.room, w.scene).includes(v.sceneId)) {
       // мелкий предмет — через крупный план
       this.app.audio.stop();
       v = await this.showScene(w.scene);
       if (g !== this.gen) return;
-      this.backBtn.classList.remove('hidden');
     }
     const said = this.app.speech.word(id);
     void v.highlight(id);
@@ -283,7 +367,10 @@ export class RoomScreen implements Screen {
     const prev = this.states;
     await this.app.progress.heard(this.room, id);
     this.refreshStages(prev);
-    await this.app.audio.play([said]);
+    const done = await this.app.audio.play([said]);
+    // прослушал все предметы крупного плана — стрелка подсказывает выход
+    if (done && g === this.gen && this.stack.length > 1 && this.current === v && this.tappable(v).every((x) => this.app.progress.get(this.room, x).heard > 0))
+      this.nudge();
   }
 
   // ------------------------------------------------------------------ 2. Проверка
@@ -510,6 +597,7 @@ export class RoomScreen implements Screen {
   }
 
   destroy() {
+    clearTimeout(this.idleTimer);
     this.gen++;
     this.mo.destroy();
     this.closeOverlay();
@@ -528,13 +616,38 @@ function ringSvg(): SVGSVGElement {
     s('circle', { cx: 50, cy: 50, r: 46, class: 'ring-val', pathLength: 1, transform: 'rotate(-90 50 50)' }));
 }
 
-/** Наезд на прямоугольник zf (в пикселях сцены) — проценты, чтобы не зависеть от размера. */
-function zoomTransform(v: SceneView, zf: [number, number, number, number], animate: boolean) {
-  const { width: W, height: H } = v.def;
-  const k = W / zf[2];
-  v.el.style.transformOrigin = '0 0';
-  if (animate) v.el.style.transition = 'transform .5s cubic-bezier(.55,0,.3,1)';
-  v.el.style.transform = `translate(${(-k * zf[0] * 100) / W}%, ${(-k * zf[1] * 100) / H}%) scale(${k})`;
+/** Прямоугольник в долях карточки (0..1) — не зависит от размера экрана. */
+interface FRect {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+const FULL: FRect = { x: 0, y: 0, w: 1, h: 1 };
+/** Ширина панели крупного плана (доля карточки); вокруг — серый фон, по нему можно нажать «назад». */
+const PANEL_W = 0.84;
+const NUDGE_IDLE_MS = 5000;
+
+function placeRect(el: HTMLElement, r: FRect) {
+  Object.assign(el.style, { left: `${r.x * 100}%`, top: `${r.y * 100}%`, width: `${r.w * 100}%`, height: `${r.h * 100}%` });
+}
+
+/** Панель «вырастает» из from в to (или сжимается обратно), вуаль проявляется/гаснет. */
+async function animateRect(panel: HTMLElement, veil: HTMLElement, from: FRect, to: FRect, opening: boolean) {
+  const base = opening ? to : from;
+  placeRect(panel, opening ? to : from);
+  const tf = (r: FRect) => `translate(${((r.x - base.x) / base.w) * 100}%, ${((r.y - base.y) / base.h) * 100}%) scale(${r.w / base.w}, ${r.h / base.h})`;
+  const ms = opening ? 480 : 380;
+  const easing = 'cubic-bezier(.45,0,.25,1)';
+  panel.style.transformOrigin = '0 0';
+  const a = panel.animate([{ transform: tf(opening ? from : to), borderRadius: '6px' }, { transform: tf(opening ? to : from) }], { duration: ms, easing, fill: 'forwards' });
+  const b = veil.animate([{ opacity: opening ? 0 : 1 }, { opacity: opening ? 1 : 0 }], { duration: ms, easing, fill: 'forwards' });
+  await Promise.all([a.finished, b.finished]).catch(() => {});
+  if (opening) {
+    a.cancel();
+    b.cancel();
+    placeRect(panel, to);
+  }
 }
 
 const nextFrameP = () => new Promise<void>((r) => requestAnimationFrame(() => requestAnimationFrame(() => r())));

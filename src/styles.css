@@ -230,8 +230,29 @@ svg {
   width: 54%;
   height: 54%;
 }
-.home-btn {
+.top-left {
   justify-self: start;
+  display: grid;
+  align-items: center;
+}
+.top-left > * {
+  grid-area: 1 / 1;
+}
+/* «назад» из крупного плана: одна большая стрелка на месте домика */
+.back-btn {
+  width: calc(var(--top) * 0.84);
+  height: calc(var(--top) * 0.84);
+  background: var(--yellow);
+  color: var(--ink);
+  box-shadow: 0 0 0 calc(var(--top) * 0.06) #ffd34d33, 0 0.6vh 1.6vh #0007;
+}
+.back-btn svg {
+  width: 58%;
+  height: 58%;
+  stroke-width: 3;
+}
+.back-btn.nudge {
+  animation: nudge 2.4s ease-in-out infinite;
 }
 .stages {
   display: flex;
@@ -360,6 +381,7 @@ svg {
 .card {
   position: absolute;
   z-index: 1;
+  touch-action: none;
   border-radius: calc(var(--card-w, 1000px) * 0.026);
   overflow: hidden;
   background: #1c2c4a;
@@ -370,6 +392,26 @@ svg {
   position: absolute;
   inset: 0;
   overflow: hidden;
+}
+/* крупный план поверх комнаты: комната сзади серая и высветленная */
+.zoom-layer {
+  position: absolute;
+  inset: 0;
+}
+.zoom-veil {
+  position: absolute;
+  inset: 0;
+  background: #eef2f8a6;
+  -webkit-backdrop-filter: grayscale(1) brightness(1.05);
+  backdrop-filter: grayscale(1) brightness(1.05);
+  cursor: pointer;
+}
+.zoom-panel {
+  position: absolute;
+  overflow: hidden;
+  border-radius: calc(var(--card-w, 1000px) * 0.022);
+  box-shadow: 0 1.6vh 5vh #0b1a3366, 0 0 0 calc(var(--card-w, 1000px) * 0.004) #fff;
+  will-change: transform;
 }
 .scene {
   position: absolute;
@@ -510,25 +552,14 @@ svg {
   width: 58%;
   height: 58%;
 }
-.bubble.hidden,
-.back-btn.hidden {
-  display: none;
+.hidden {
+  display: none !important;
 }
 .bubble.pop {
   animation: bubble-pop 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
 }
 .bubble.tap {
   animation: bubble-tap 0.3s ease;
-}
-.back-btn {
-  position: absolute;
-  z-index: 4;
-  left: 1.8cqw;
-  top: 1.8cqw;
-  width: max(48px, 7.4cqw);
-  height: max(48px, 7.4cqw);
-  background: #0b1a33b3;
-  box-shadow: 0 0.6cqw 2cqw #0006;
 }
 
 /* конец круга */
@@ -832,6 +863,25 @@ svg {
   to {
     transform: translateY(-60px) scale(1);
     opacity: 0;
+  }
+}
+@keyframes nudge {
+  0%,
+  55%,
+  100% {
+    transform: none;
+  }
+  64% {
+    transform: translateX(-14%) rotate(-10deg);
+  }
+  73% {
+    transform: translateX(4%) rotate(3deg);
+  }
+  82% {
+    transform: translateX(-9%) rotate(-6deg);
+  }
+  91% {
+    transform: translateX(0) rotate(0);
   }
 }
 @keyframes bump {

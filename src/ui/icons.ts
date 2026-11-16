@@ -3,7 +3,7 @@ const svg = (body: string, vb = '0 0 24 24') => `<svg viewBox="${vb}" aria-hidde
 
 export const ICON = {
   home: svg('<path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h4.5v-5h3v5H18V9.5"/>'),
-  back: svg('<circle cx="10.5" cy="10.5" r="6"/><path d="M8 10.5h5M15 15l5 5"/>'),
+  arrowBack: svg('<path d="M19.5 12H5.5M11.5 5.5 5 12l6.5 6.5"/>'),
   listen: svg('<path d="M4 9.5h3.5L12.5 5v14l-5-4.5H4z" fill="currentColor" stroke-width="1.6"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.5a8 8 0 0 1 0 11"/>'),
   check: svg('<circle cx="10.5" cy="10.5" r="6.5"/><path d="M7.6 10.6 9.8 12.8l3.6-4"/><path d="M15.4 15.4 20 20"/>'),
   phrase: svg('<path d="M4 5.5h16v10H11l-4.5 4v-4H4z"/><path d="M8.5 9.5h.01M12 9.5h.01M15.5 9.5h.01" stroke-width="3.2"/>'),
