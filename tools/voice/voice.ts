@@ -14,7 +14,7 @@ import { dirname, join } from 'node:path';
 import { formId } from '../../src/content/keys.ts';
 import type { Line, Pack } from '../../src/content/types.ts';
 import { ROOT, loadCatalog, loadPack } from '../../scripts/packs-lib.ts';
-import { concatWithGaps, shape } from './audio.ts';
+import { concatWithGaps, loudness, shape } from './audio.ts';
 
 interface Config {
   voiceId: string;
@@ -63,6 +63,8 @@ const MAX = num('--max-chars', CFG.maxChars);
 const ONLY = list('--only');
 const FORCE = new Set(list('--force') ?? []);
 const LANGS = list('--lang') ?? loadCatalog().languages.map((l) => l.lang);
+/** Только обработать уже лежащие файлы (обрезка + громкость), без ElevenLabs и без кредитов. */
+const RESHAPE = list('--reshape');
 const chars = (t: string) => [...t].length;
 
 // ---------------------------------------------------------------- что озвучивать (порядок как в pack.json)
@@ -156,8 +158,41 @@ async function buildPreviews(lang: string): Promise<string[]> {
   return made;
 }
 
+// ---------------------------------------------------------------- обработка готовых файлов
+/** --reshape id,…: перезаписывает ТОЛЬКО эти файлы тем же конвейером (обрезка тишины + громкость). Сеть не нужна. */
+async function reshapeExisting(ids: string[]) {
+  let n = 0;
+  for (const lang of LANGS) {
+    const pack = loadPack(lang)!;
+    const byId = new Map(entries(pack));
+    for (const id of ids) {
+      if (!byId.has(id)) throw new Error(`${lang}: в пакете нет записи ${id}`);
+      const file = join(ROOT, pack.audioDir, byId.get(id)?.audio || `${id}.mp3`);
+      if (!existsSync(file)) throw new Error(`${lang}: нет файла ${file}`);
+    }
+    for (const id of ids) {
+      const file = join(ROOT, pack.audioDir, byId.get(id)?.audio || `${id}.mp3`);
+      const before = await loudness(file);
+      const tmp = mkdtempSync(join(tmpdir(), 'ms-reshape-'));
+      try {
+        const src = join(tmp, 'src.mp3');
+        writeFileSync(src, readFileSync(file));
+        const part = file + '.part.mp3';
+        const after = await shape(src, part, CFG);
+        renameSync(part, file);
+        n++;
+        console.log(`  ✓ ${lang} ${id}: ${before.toFixed(1)} → ${after.toFixed(1)} LUFS`);
+      } finally {
+        rmSync(tmp, { recursive: true, force: true });
+      }
+    }
+  }
+  console.log(`Обработано файлов: ${n}. Запросов к ElevenLabs: 0, кредиты не тратились.`);
+}
+
 // ---------------------------------------------------------------- main
 async function main() {
+  if (RESHAPE) return reshapeExisting(RESHAPE);
   console.log(`Голос Mo: ${CFG.voiceId} · ${CFG.modelId} · ${CFG.outputFormat}`);
   const all: Item[] = [];
   for (const lang of LANGS) {

@@ -12,6 +12,7 @@ npm run voice -- --lang en-US,es-419             # сухой прогон вы�
 npm run voice -- --lang en-US,es-419 --yes       # генерация (стоп, если знаков больше --max-chars, по умолчанию 2500)
 npm run voice -- --lang en-US --only kitchen.cup --yes     # одна строка (проверка связи)
 npm run voice -- --lang en-US --force mo.thank_you --yes   # перезаписать эти id, даже если файл есть
+npm run voice -- --lang en-US --reshape kitchen.fridge     # только обрезка + громкость готового файла (без ElevenLabs)
 ```
 
 После генерации каждого файла: тишина по краям обрезается до ~80 мс, громкость — около −16 LUFS (усиление + лимитер пиков −1,5 дБ, ffmpeg).
