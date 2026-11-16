@@ -24,7 +24,7 @@ describe('отчёт родителям', () => {
     expect([r.learned, r.total, r.weekGain]).toEqual([2, 130, 1]);
     expect(r.accuracy).toBe(85);
     expect(r.minutesPerDay).toBe(13);
-    expect(r.rooms[0]).toEqual({ id: 'kitchen', icon: 'frying_pan', learned: 2, total: 10 });
+    expect(r.rooms[0]).toEqual({ id: 'kitchen', icon: 'frying_pan', learned: 2, total: 13 });
     expect(r.repeatToday).toEqual(['kitchen.fork', 'kitchen.cup']);
   });
 

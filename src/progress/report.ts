@@ -56,12 +56,11 @@ export function buildReport(args: {
     streak,
     accuracy: answers ? Math.round((100 * correct) / answers) : null,
     minutesPerDay: activeDays.length ? Math.round(ms / 60000 / activeDays.length) : 0,
-    rooms: rooms.map((r) => ({
-      id: r.id,
-      icon: r.icon,
-      learned: r.words.filter((w) => isLearned(pm.get(w.id))).length,
-      total: r.words.length,
-    })),
+    // комната «13/13» — по предметам уровня 1; детали входят в общее «выучено» (130+)
+    rooms: rooms.map((r) => {
+      const core = r.words.filter((w) => (w.level ?? 1) === 1);
+      return { id: r.id, icon: r.icon, learned: core.filter((w) => isLearned(pm.get(w.id))).length, total: core.length };
+    }),
     repeatToday: words
       .filter((w) => isDue(w, today))
       .sort((a, b) => (a.dueDay! < b.dueDay! ? -1 : 1))

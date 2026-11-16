@@ -45,6 +45,30 @@
         "audio": "form.kitchen.table.mp3"
       }
     },
+    "kitchen.pot": {
+      "text": "pot",
+      "audio": "kitchen.pot.mp3",
+      "form": {
+        "text": "a pot",
+        "audio": "form.kitchen.pot.mp3"
+      }
+    },
+    "kitchen.stove": {
+      "text": "stove",
+      "audio": "kitchen.stove.mp3",
+      "form": {
+        "text": "a stove",
+        "audio": "form.kitchen.stove.mp3"
+      }
+    },
+    "kitchen.window": {
+      "text": "window",
+      "audio": "kitchen.window.mp3",
+      "form": {
+        "text": "a window",
+        "audio": "form.kitchen.window.mp3"
+      }
+    },
     "kitchen.cup": {
       "text": "cup",
       "audio": "kitchen.cup.mp3",
@@ -126,6 +150,30 @@
     "check.where.kitchen.table": {
       "text": "Where's the table?",
       "audio": "check.where.kitchen.table.mp3"
+    },
+    "check.show_me.kitchen.pot": {
+      "text": "Show me the pot!",
+      "audio": "check.show_me.kitchen.pot.mp3"
+    },
+    "check.where.kitchen.pot": {
+      "text": "Where's the pot?",
+      "audio": "check.where.kitchen.pot.mp3"
+    },
+    "check.show_me.kitchen.stove": {
+      "text": "Show me the stove!",
+      "audio": "check.show_me.kitchen.stove.mp3"
+    },
+    "check.where.kitchen.stove": {
+      "text": "Where's the stove?",
+      "audio": "check.where.kitchen.stove.mp3"
+    },
+    "check.show_me.kitchen.window": {
+      "text": "Show me the window!",
+      "audio": "check.show_me.kitchen.window.mp3"
+    },
+    "check.where.kitchen.window": {
+      "text": "Where's the window?",
+      "audio": "check.where.kitchen.window.mp3"
     },
     "check.show_me.kitchen.cup": {
       "text": "Show me the cup!",

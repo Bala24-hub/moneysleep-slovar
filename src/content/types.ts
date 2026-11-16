@@ -5,15 +5,26 @@ export type Point = [number, number];
 export type Poly = Point[];
 export type Rect = [number, number, number, number]; // x, y, w, h в пикселях сцены
 
+/** 1 — предметы (малыши 3+), 2 — детали предметов (дети постарше). */
+export type Level = 1 | 2;
+
 export interface SceneDef {
   image: string;
   /** Тот же кадр без предметов-слоёв (для этапа «Фразы»). */
   empty?: string;
   width: number;
   height: number;
-  /** Крупный план: из какой сцены и из какого прямоугольника на неё «наезжаем». */
+  /** Крупный план: из какой сцены и из какого прямоугольника на неё «наезжаем». Глубина любая: кухня → холодильник → полка. */
   parent?: string;
   zoomFrom?: Rect;
+  /**
+   * Предмет родительской сцены, который открывает этот крупный план (на нём значок «есть детали»),
+   * например kitchen.fridge → сцена kitchen.fridge.inside. Без opener крупный план открывается
+   * нажатием на свои мелкие предметы (как «кухня → стол»).
+   */
+  opener?: string;
+  /** С какого уровня сцена доступна (по умолчанию 1). */
+  level?: Level;
 }
 
 export interface SpriteDef {
@@ -30,6 +41,8 @@ export interface WordDef {
   id: string;
   /** Основная сцена слова (там его спрашивают в «Проверке»). */
   scene: string;
+  /** Уровень слова (по умолчанию 1). Детали — 2: freezer, shelf, burner, knob… */
+  level?: Level;
   /** Зоны нажатия по сценам (полигоны в пикселях сцены). */
   zones: Record<string, Poly>;
   /** Виды фраз этапа «Фразы», например ["i_want"]. */

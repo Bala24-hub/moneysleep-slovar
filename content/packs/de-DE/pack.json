@@ -53,6 +53,30 @@
         "audio": "form.kitchen.table.mp3"
       }
     },
+    "kitchen.pot": {
+      "text": "",
+      "audio": "kitchen.pot.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.pot.mp3"
+      }
+    },
+    "kitchen.stove": {
+      "text": "",
+      "audio": "kitchen.stove.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.stove.mp3"
+      }
+    },
+    "kitchen.window": {
+      "text": "",
+      "audio": "kitchen.window.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.window.mp3"
+      }
+    },
     "kitchen.cup": {
       "text": "",
       "audio": "kitchen.cup.mp3",
@@ -134,6 +158,30 @@
     "check.where.kitchen.table": {
       "text": "",
       "audio": "check.where.kitchen.table.mp3"
+    },
+    "check.show_me.kitchen.pot": {
+      "text": "",
+      "audio": "check.show_me.kitchen.pot.mp3"
+    },
+    "check.where.kitchen.pot": {
+      "text": "",
+      "audio": "check.where.kitchen.pot.mp3"
+    },
+    "check.show_me.kitchen.stove": {
+      "text": "",
+      "audio": "check.show_me.kitchen.stove.mp3"
+    },
+    "check.where.kitchen.stove": {
+      "text": "",
+      "audio": "check.where.kitchen.stove.mp3"
+    },
+    "check.show_me.kitchen.window": {
+      "text": "",
+      "audio": "check.show_me.kitchen.window.mp3"
+    },
+    "check.where.kitchen.window": {
+      "text": "",
+      "audio": "check.where.kitchen.window.mp3"
     },
     "check.show_me.kitchen.cup": {
       "text": "",

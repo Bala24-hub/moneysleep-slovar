@@ -2,6 +2,7 @@
 import type { App, Screen } from '../app.ts';
 import type { Said } from '../content/speech.ts';
 import type { RoomDef, WordDef } from '../content/types.ts';
+import { checkPool, maxLevel, wordsInScene } from '../progress/levels.ts';
 import {
   STAGES, firstOpenStage, phraseWords, pickCheckTarget, pickPhraseTarget, shuffle,
   type StageId, type StageState,
@@ -155,7 +156,7 @@ export class RoomScreen implements Screen {
       v.spotlight(null);
       v.clearFx();
       v.clearCaption();
-      v.setActive(null);
+      v.setActive(this.tappable(v));
     }
     if (id === 'words') void this.startWords();
     else if (id === 'check') void this.nextQuestion();
@@ -168,6 +169,7 @@ export class RoomScreen implements Screen {
     let v = this.views.get(key);
     if (!v) {
       v = new SceneView(this.room, sceneId, { empty, onTap: (id, ev) => this.onSceneTap(id, ev) });
+      v.setActive(this.tappable(v));
       this.views.set(key, v);
     }
     return v;
@@ -234,6 +236,16 @@ export class RoomScreen implements Screen {
     await this.showScene(this.room.start);
   }
 
+  /** Уровень, открытый в комнате сейчас (1 — предметы, 2 — детали). */
+  private get level() {
+    return maxLevel(this.room, this.app.progress.pm, this.app.levelMode);
+  }
+
+  /** Что можно нажимать в сцене без подсказки «из двух»: слова открытого уровня. */
+  private tappable(v: SceneView): string[] {
+    return wordsInScene(this.room, v.sceneId, this.level);
+  }
+
   private word(id: string): WordDef {
     return this.room.words.find((w) => w.id === id)!;
   }
@@ -279,7 +291,7 @@ export class RoomScreen implements Screen {
     const g = this.gen;
     this.busy = true;
     if (this.roundN >= ROUND) return this.roundDone();
-    const ids = this.room.words.map((w) => w.id);
+    const ids = checkPool(this.room, this.app.progress.pm, this.level);
     const target = takeDev() ?? pickCheckTarget(ids, this.app.progress.pm, this.app.progress.today, this.recent.slice(-2));
     this.target = target;
     this.recent.push(target);
@@ -287,11 +299,11 @@ export class RoomScreen implements Screen {
     if (g !== this.gen) return;
     let choices: string[] | null = null;
     if (this.easy > 0) {
-      const others = v.wordsHere().filter((x) => x !== target);
+      const others = this.tappable(v).filter((x) => x !== target);
       choices = shuffle([target, others[Math.floor(Math.random() * others.length)]]);
     }
     v.spotlight(choices);
-    v.setActive(choices);
+    v.setActive(choices ?? this.tappable(v));
     await this.app.progress.asked(this.room, target);
     this.question = this.app.speech.checkQuestion(this.room, target);
     this.busy = false;

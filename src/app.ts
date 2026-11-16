@@ -2,6 +2,7 @@
 import type { AudioEngine } from './audio/engine.ts';
 import type { Content } from './content/loader.ts';
 import type { Speech } from './content/speech.ts';
+import type { LevelMode } from './progress/levels.ts';
 import type { Progress } from './progress/store.ts';
 
 export interface Screen {
@@ -19,6 +20,8 @@ export interface App {
   progress: Progress;
   /** Подписи на картинках (отключаются в родительской части). */
   captions: boolean;
+  /** Переключатель родителей «малыш / постарше»; auto — уровень 2 по успехам. */
+  levelMode: LevelMode;
   show(screen: Screen): void;
   /** Последнее касание — для подсчёта минут в день. */
   touched(): void;

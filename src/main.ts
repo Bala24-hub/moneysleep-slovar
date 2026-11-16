@@ -8,6 +8,7 @@ import { AudioEngine } from './audio/engine.ts';
 import { cachePackOffline, loadCatalog, loadContent } from './content/loader.ts';
 import { Speech } from './content/speech.ts';
 import { getKv } from './progress/db.ts';
+import type { LevelMode } from './progress/levels.ts';
 import { Progress } from './progress/store.ts';
 import { StartScreen } from './screens/start.ts';
 
@@ -19,7 +20,12 @@ async function boot() {
   const root = document.getElementById('app')!;
   const catalog = await loadCatalog();
   const lang = await getKv('lang', catalog.defaultLang);
-  const [content, progress, captions] = await Promise.all([loadContent(catalog, lang), Progress.load(lang), getKv('captions', true)]);
+  const [content, progress, captions, levelMode] = await Promise.all([
+    loadContent(catalog, lang),
+    Progress.load(lang),
+    getKv('captions', true),
+    getKv<LevelMode>('levelMode', 'auto'),
+  ]);
   document.documentElement.lang = lang;
   const audio = new AudioEngine();
   let lastTouch = 0;
@@ -30,6 +36,7 @@ async function boot() {
     speech: new Speech(content),
     progress,
     captions,
+    levelMode,
     show: createShow(root),
     touched: () => (lastTouch = Date.now()),
   };

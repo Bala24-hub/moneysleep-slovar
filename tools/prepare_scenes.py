@@ -34,7 +34,9 @@ SCENES = {
         'kitchen.bowl':          (624, 396, 738, 474),
         'kitchen.plate':         (480, 481, 658, 585),
         'kitchen.fork':          (420, 482, 480, 590),
-        'kitchen.spoon':         (660, 482, 722, 590),
+        'kitchen.spoon':           (660, 482, 722, 590),
+        'kitchen.pot':             (872, 208, 1128, 360),
+        'kitchen.stove':           (852, 322, 1146, 656),
     }),
     'kitchen.table': ('assets/scenes/kitchen_table.jpg', {
         'kitchen.fork':  (122, 200, 244, 534),
@@ -50,6 +52,7 @@ COLOR = {
     'spoon': lambda H, S, V: (H >= 84) & (H <= 110) & (S > 60),
     ('kitchen', 'kitchen.plate'): lambda H, S, V: ((H <= 14) | (H >= 170)) & (S > 70),
     'chair': lambda H, S, V: (H >= 8) & (H <= 32) & (S > 125),
+    'pot': lambda H, S, V: (H >= 3) & (H <= 22) & (S > 110),
 }
 
 
@@ -82,11 +85,18 @@ def segment(img, scene, wid, rect):
     return filled, poly
 
 
+# Где сегментация по цвету не годится (окно того же цвета, что стена) — полигон вручную.
+MANUAL = {
+    ('kitchen', 'kitchen.window'): [[336, 88], [812, 88], [812, 343], [830, 346], [830, 372], [318, 372], [318, 346], [336, 343]],
+}
+
 masks, polys = {}, {}
 for scene, (path, items) in SCENES.items():
     img = cv2.imread(path)
     for wid, rect in items.items():
         masks[(scene, wid)], polys[(scene, wid)] = segment(img, scene, wid, rect)
+for key, poly in MANUAL.items():
+    polys[key] = poly
 
 # ---------------------------------------------------------------- белые углы
 def fill_corners(img, r=80):

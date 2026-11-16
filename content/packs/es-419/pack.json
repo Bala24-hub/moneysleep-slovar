@@ -55,6 +55,30 @@
         "audio": "form.kitchen.table.mp3"
       }
     },
+    "kitchen.pot": {
+      "text": "la olla",
+      "audio": "kitchen.pot.mp3",
+      "form": {
+        "text": "una olla",
+        "audio": "form.kitchen.pot.mp3"
+      }
+    },
+    "kitchen.stove": {
+      "text": "la estufa",
+      "audio": "kitchen.stove.mp3",
+      "form": {
+        "text": "una estufa",
+        "audio": "form.kitchen.stove.mp3"
+      }
+    },
+    "kitchen.window": {
+      "text": "la ventana",
+      "audio": "kitchen.window.mp3",
+      "form": {
+        "text": "una ventana",
+        "audio": "form.kitchen.window.mp3"
+      }
+    },
     "kitchen.cup": {
       "text": "la taza",
       "audio": "kitchen.cup.mp3",
@@ -136,6 +160,30 @@
     "check.where.kitchen.table": {
       "text": "¿Dónde está la mesa?",
       "audio": "check.where.kitchen.table.mp3"
+    },
+    "check.show_me.kitchen.pot": {
+      "text": "¡Muéstrame la olla!",
+      "audio": "check.show_me.kitchen.pot.mp3"
+    },
+    "check.where.kitchen.pot": {
+      "text": "¿Dónde está la olla?",
+      "audio": "check.where.kitchen.pot.mp3"
+    },
+    "check.show_me.kitchen.stove": {
+      "text": "¡Muéstrame la estufa!",
+      "audio": "check.show_me.kitchen.stove.mp3"
+    },
+    "check.where.kitchen.stove": {
+      "text": "¿Dónde está la estufa?",
+      "audio": "check.where.kitchen.stove.mp3"
+    },
+    "check.show_me.kitchen.window": {
+      "text": "¡Muéstrame la ventana!",
+      "audio": "check.show_me.kitchen.window.mp3"
+    },
+    "check.where.kitchen.window": {
+      "text": "¿Dónde está la ventana?",
+      "audio": "check.where.kitchen.window.mp3"
     },
     "check.show_me.kitchen.cup": {
       "text": "¡Muéstrame la taza!",
