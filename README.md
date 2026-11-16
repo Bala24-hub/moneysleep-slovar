@@ -24,6 +24,6 @@ npm run build        # dist/ для Vercel (service worker собирается 
 | `src/progress/` | прогресс только на устройстве (IndexedDB), повторение 1·3·7, открытие этапов, данные отчёта |
 | `src/screens/room.ts` | три этапа комнаты: Слова → Проверка → Фразы |
 | `sw/sw.js` | офлайн: приложение при установке, пакет выбранного языка — по запросу |
-| `docs/screenshots/` | скриншоты на согласование (`npm run screenshots` при запущенном `npm run dev`) |
+| `docs/screens/kitchen/` | скриншоты кухни на согласование (`npm run screenshots` при запущенном `npm run dev`) |
 
 Без сервера для данных ребёнка, без аналитики и трекинга. ElevenLabs из кода не вызывается.

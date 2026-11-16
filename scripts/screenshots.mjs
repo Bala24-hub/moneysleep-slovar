@@ -1,12 +1,12 @@
 // Скриншоты кухни на iPad для согласования: node scripts/screenshots.mjs [url]
-// Нужен запущенный dev-сервер (npm run dev). Пишет в docs/screenshots/.
+// Нужен запущенный dev-сервер (npm run dev). Пишет в docs/screens/kitchen/.
 import { mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
 // playwright в окружении стоит глобально (не в зависимостях проекта)
 const { chromium } = createRequire(import.meta.url)('playwright');
 const APP = process.argv[2] ?? 'http://localhost:5173/';
-const OUT = new URL('../docs/screenshots/', import.meta.url).pathname;
+const OUT = new URL('../docs/screens/kitchen/', import.meta.url).pathname;
 mkdirSync(OUT, { recursive: true });
 
 const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] });
