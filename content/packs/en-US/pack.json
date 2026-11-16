@@ -1,0 +1,212 @@
+{
+  "lang": "en-US",
+  "version": 1,
+  "audioDir": "assets/audio/en-US",
+  "articles": [],
+  "words": {
+    "kitchen.fridge": {
+      "text": "fridge",
+      "audio": "kitchen.fridge.mp3",
+      "form": {
+        "text": "a fridge",
+        "audio": "form.kitchen.fridge.mp3"
+      }
+    },
+    "kitchen.frying_pan": {
+      "text": "frying pan",
+      "audio": "kitchen.frying_pan.mp3",
+      "form": {
+        "text": "a frying pan",
+        "audio": "form.kitchen.frying_pan.mp3"
+      }
+    },
+    "kitchen.kitchen_towel": {
+      "text": "kitchen towel",
+      "audio": "kitchen.kitchen_towel.mp3",
+      "form": {
+        "text": "a kitchen towel",
+        "audio": "form.kitchen.kitchen_towel.mp3"
+      }
+    },
+    "kitchen.chair": {
+      "text": "chair",
+      "audio": "kitchen.chair.mp3",
+      "form": {
+        "text": "a chair",
+        "audio": "form.kitchen.chair.mp3"
+      }
+    },
+    "kitchen.table": {
+      "text": "table",
+      "audio": "kitchen.table.mp3",
+      "form": {
+        "text": "a table",
+        "audio": "form.kitchen.table.mp3"
+      }
+    },
+    "kitchen.cup": {
+      "text": "cup",
+      "audio": "kitchen.cup.mp3",
+      "form": {
+        "text": "a cup",
+        "audio": "form.kitchen.cup.mp3"
+      }
+    },
+    "kitchen.plate": {
+      "text": "plate",
+      "audio": "kitchen.plate.mp3",
+      "form": {
+        "text": "a plate",
+        "audio": "form.kitchen.plate.mp3"
+      }
+    },
+    "kitchen.spoon": {
+      "text": "spoon",
+      "audio": "kitchen.spoon.mp3",
+      "form": {
+        "text": "a spoon",
+        "audio": "form.kitchen.spoon.mp3"
+      }
+    },
+    "kitchen.fork": {
+      "text": "fork",
+      "audio": "kitchen.fork.mp3",
+      "form": {
+        "text": "a fork",
+        "audio": "form.kitchen.fork.mp3"
+      }
+    },
+    "kitchen.bowl": {
+      "text": "bowl",
+      "audio": "kitchen.bowl.mp3",
+      "form": {
+        "text": "a bowl",
+        "audio": "form.kitchen.bowl.mp3"
+      }
+    }
+  },
+  "phrases": {
+    "check.show_me.kitchen.fridge": {
+      "text": "Show me the fridge!",
+      "audio": "check.show_me.kitchen.fridge.mp3"
+    },
+    "check.where.kitchen.fridge": {
+      "text": "Where's the fridge?",
+      "audio": "check.where.kitchen.fridge.mp3"
+    },
+    "check.show_me.kitchen.frying_pan": {
+      "text": "Show me the frying pan!",
+      "audio": "check.show_me.kitchen.frying_pan.mp3"
+    },
+    "check.where.kitchen.frying_pan": {
+      "text": "Where's the frying pan?",
+      "audio": "check.where.kitchen.frying_pan.mp3"
+    },
+    "check.show_me.kitchen.kitchen_towel": {
+      "text": "Show me the kitchen towel!",
+      "audio": "check.show_me.kitchen.kitchen_towel.mp3"
+    },
+    "check.where.kitchen.kitchen_towel": {
+      "text": "Where's the kitchen towel?",
+      "audio": "check.where.kitchen.kitchen_towel.mp3"
+    },
+    "check.show_me.kitchen.chair": {
+      "text": "Show me the chair!",
+      "audio": "check.show_me.kitchen.chair.mp3"
+    },
+    "check.where.kitchen.chair": {
+      "text": "Where's the chair?",
+      "audio": "check.where.kitchen.chair.mp3"
+    },
+    "check.show_me.kitchen.table": {
+      "text": "Show me the table!",
+      "audio": "check.show_me.kitchen.table.mp3"
+    },
+    "check.where.kitchen.table": {
+      "text": "Where's the table?",
+      "audio": "check.where.kitchen.table.mp3"
+    },
+    "check.show_me.kitchen.cup": {
+      "text": "Show me the cup!",
+      "audio": "check.show_me.kitchen.cup.mp3"
+    },
+    "check.where.kitchen.cup": {
+      "text": "Where's the cup?",
+      "audio": "check.where.kitchen.cup.mp3"
+    },
+    "phrase.i_want.kitchen.cup": {
+      "text": "I want the cup!",
+      "audio": "phrase.i_want.kitchen.cup.mp3"
+    },
+    "check.show_me.kitchen.plate": {
+      "text": "Show me the plate!",
+      "audio": "check.show_me.kitchen.plate.mp3"
+    },
+    "check.where.kitchen.plate": {
+      "text": "Where's the plate?",
+      "audio": "check.where.kitchen.plate.mp3"
+    },
+    "phrase.i_want.kitchen.plate": {
+      "text": "I want the plate!",
+      "audio": "phrase.i_want.kitchen.plate.mp3"
+    },
+    "check.show_me.kitchen.spoon": {
+      "text": "Show me the spoon!",
+      "audio": "check.show_me.kitchen.spoon.mp3"
+    },
+    "check.where.kitchen.spoon": {
+      "text": "Where's the spoon?",
+      "audio": "check.where.kitchen.spoon.mp3"
+    },
+    "phrase.i_want.kitchen.spoon": {
+      "text": "I want the spoon!",
+      "audio": "phrase.i_want.kitchen.spoon.mp3"
+    },
+    "check.show_me.kitchen.fork": {
+      "text": "Show me the fork!",
+      "audio": "check.show_me.kitchen.fork.mp3"
+    },
+    "check.where.kitchen.fork": {
+      "text": "Where's the fork?",
+      "audio": "check.where.kitchen.fork.mp3"
+    },
+    "phrase.i_want.kitchen.fork": {
+      "text": "I want the fork!",
+      "audio": "phrase.i_want.kitchen.fork.mp3"
+    },
+    "check.show_me.kitchen.bowl": {
+      "text": "Show me the bowl!",
+      "audio": "check.show_me.kitchen.bowl.mp3"
+    },
+    "check.where.kitchen.bowl": {
+      "text": "Where's the bowl?",
+      "audio": "check.where.kitchen.bowl.mp3"
+    },
+    "phrase.i_want.kitchen.bowl": {
+      "text": "I want the bowl!",
+      "audio": "phrase.i_want.kitchen.bowl.mp3"
+    }
+  },
+  "mo": {
+    "mo.learn_english_with_me": {
+      "text": "Learn English with me!",
+      "audio": "mo.learn_english_with_me.mp3"
+    },
+    "mo.thank_you": {
+      "text": "Thank you!",
+      "audio": "mo.thank_you.mp3"
+    },
+    "mo.try_again": {
+      "text": "Try again.",
+      "audio": "mo.try_again.mp3"
+    },
+    "mo.this_is_not": {
+      "text": "This is not",
+      "audio": "mo.this_is_not.mp3"
+    },
+    "mo.this_is": {
+      "text": "This is",
+      "audio": "mo.this_is.mp3"
+    }
+  }
+}

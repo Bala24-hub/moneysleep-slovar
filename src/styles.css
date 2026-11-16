@@ -1,0 +1,865 @@
+/* Moneysleep «Живой словарь». Стиль как в рекламе: #0B1A33, жёлтый #FFD34D, синий #3D7BFF, Onest. */
+:root {
+  --bg: #0b1a33;
+  --bg2: #16305a;
+  --yellow: #ffd34d;
+  --yellow-d: #f2b81f;
+  --blue: #3d7bff;
+  --ink: #0b1a33;
+  --white: #fff;
+  --top: clamp(56px, 10.5vh, 88px);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Onest', system-ui, sans-serif;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+svg {
+  display: block;
+}
+
+/* ---------------------------------------------------------------- экраны */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.screen-in {
+  animation: fade-in 0.32s ease both;
+}
+.screen-out {
+  animation: fade-out 0.3s ease both;
+  pointer-events: none;
+}
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 18%, #ffffff55 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 78% 12%, #ffffff44 50%, transparent 51%),
+    radial-gradient(2px 2px at 88% 64%, #ffffff33 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 35% 82%, #ffffff33 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 62% 42%, #ffffff22 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 6% 70%, #ffffff33 50%, transparent 51%),
+    radial-gradient(ellipse 70% 60% at 50% 42%, var(--bg2) 0%, var(--bg) 72%);
+}
+
+/* ---------------------------------------------------------------- старт */
+.start {
+  align-items: center;
+  justify-content: center;
+  gap: 3vh;
+}
+.mo.mo-start {
+  position: relative;
+  animation: bob 2.8s ease-in-out infinite;
+  width: 40vh;
+  height: 42vh;
+}
+.big-play {
+  width: 20vh;
+  height: 20vh;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 1.4vh #ffd34d33, 0 1.4vh 4vh #0008;
+  animation: breathe 1.8s ease-in-out infinite;
+}
+.big-play svg {
+  width: 48%;
+  height: 48%;
+  margin-left: 6%;
+}
+.big-play.pressed {
+  animation: none;
+  transform: scale(0.92);
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+/* ---------------------------------------------------------------- комнаты */
+.home {
+  padding-left: max(3vw, env(safe-area-inset-left));
+  padding-right: max(3vw, env(safe-area-inset-right));
+}
+.home-top {
+  height: calc(var(--top) * 1.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mo.mo-home {
+  position: relative;
+  height: 90%;
+  aspect-ratio: 182 / 194;
+}
+.rooms {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: min-content;
+  align-content: center;
+  gap: 1.4vw;
+  padding-bottom: 4vh;
+}
+.room-card {
+  position: relative;
+  aspect-ratio: 1152 / 760;
+  border-radius: 1.6vw;
+  overflow: hidden;
+  background: #ffffff10;
+  box-shadow: 0 0.8vh 2.4vh #0006;
+}
+.room-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+.room-card:not(.soon) {
+  grid-column: span 3;
+  grid-row: span 3;
+  outline: 0.45vw solid var(--yellow);
+  outline-offset: -0.1vw;
+}
+.room-card:not(.soon) .rs {
+  width: 4vw;
+  height: 4vw;
+}
+.room-card.soon {
+  display: grid;
+  place-items: center;
+  color: #ffffff30;
+  background: #ffffff0a;
+  border: 2px dashed #ffffff1a;
+  box-shadow: none;
+}
+.room-card.soon svg {
+  width: 26%;
+}
+.room-stages {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5vw;
+}
+.rs {
+  width: 2.6vw;
+  height: 2.6vw;
+  min-width: 22px;
+  min-height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #0b1a33cc;
+  color: #ffffff88;
+}
+.rs svg {
+  width: 62%;
+  height: 62%;
+}
+.rs.open {
+  background: var(--white);
+  color: var(--ink);
+}
+.rs.done {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- верхняя панель */
+.topbar {
+  height: var(--top);
+  flex: none;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 max(16px, 2vw);
+}
+.round {
+  width: calc(var(--top) * 0.68);
+  height: calc(var(--top) * 0.68);
+  border-radius: 50%;
+  background: #ffffff1a;
+  color: var(--white);
+  display: grid;
+  place-items: center;
+}
+.round svg {
+  width: 54%;
+  height: 54%;
+}
+.home-btn {
+  justify-self: start;
+}
+.stages {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--top) * 0.12);
+}
+.stage-dots {
+  width: calc(var(--top) * 0.42);
+  border-top: calc(var(--top) * 0.05) dotted #ffd34d88;
+}
+.stage {
+  position: relative;
+  width: calc(var(--top) * 0.7);
+  height: calc(var(--top) * 0.7);
+  border-radius: 50%;
+  background: #ffffff1f;
+  color: var(--yellow);
+  display: grid;
+  place-items: center;
+  transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1), background 0.2s;
+}
+.stage .stage-icon svg {
+  width: calc(var(--top) * 0.34);
+  height: calc(var(--top) * 0.34);
+}
+.stage.active {
+  background: var(--yellow);
+  color: var(--ink);
+  transform: scale(1.14);
+  box-shadow: 0 0 0 calc(var(--top) * 0.05) #ffd34d40;
+}
+.stage-ring {
+  position: absolute;
+  inset: calc(var(--top) * -0.085);
+  width: calc(100% + var(--top) * 0.17);
+  height: calc(100% + var(--top) * 0.17);
+  pointer-events: none;
+}
+.ring-track {
+  fill: none;
+  stroke: #ffffff22;
+  stroke-width: 6;
+}
+.ring-val {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.6s ease;
+}
+.stage.active .ring-val {
+  stroke: var(--white);
+}
+.stage-lock {
+  display: none;
+}
+.stage.locked {
+  background: #ffffff10;
+  color: #ffffff59;
+}
+.stage.locked .stage-icon {
+  display: none;
+}
+.stage.locked .stage-lock {
+  display: block;
+}
+.stage.locked .stage-lock svg {
+  width: calc(var(--top) * 0.28);
+  height: calc(var(--top) * 0.28);
+}
+.stage.locked .ring-val {
+  opacity: 0;
+}
+.badge {
+  position: absolute;
+  top: calc(var(--top) * -0.1);
+  right: calc(var(--top) * -0.12);
+  width: calc(var(--top) * 0.26);
+  height: calc(var(--top) * 0.26);
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--yellow);
+  color: var(--yellow);
+  font-weight: 800;
+  font-size: calc(var(--top) * 0.15);
+  display: grid;
+  place-items: center;
+}
+.stage.locked .badge {
+  border-color: #ffffff40;
+  color: #ffffff60;
+}
+.stage.pulse {
+  animation: stage-pulse 1.3s ease-in-out infinite;
+}
+.coins {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px 6px 6px;
+  border-radius: 99px;
+  background: #ffffff14;
+}
+.coins .coin {
+  width: calc(var(--top) * 0.5);
+  height: calc(var(--top) * 0.5);
+}
+.coins b {
+  font-weight: 800;
+  font-size: calc(var(--top) * 0.32);
+  min-width: 1.2em;
+  text-align: center;
+}
+.home-top .coins {
+  --top: clamp(56px, 10.5vh, 88px);
+}
+
+/* ---------------------------------------------------------------- сцена */
+.stage-area {
+  position: relative;
+  flex: 1;
+}
+.card {
+  position: absolute;
+  z-index: 1;
+  border-radius: calc(var(--card-w, 1000px) * 0.026);
+  overflow: hidden;
+  background: #1c2c4a;
+  box-shadow: 0 2vh 6vh #0009, 0 0 0 1px #ffffff12;
+  container-type: size;
+}
+.viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.scene {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+}
+.scene-svg {
+  width: 100%;
+  height: 100%;
+}
+.zone {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 26;
+  stroke-linejoin: round;
+  pointer-events: all;
+  cursor: pointer;
+}
+.fx,
+.dim {
+  pointer-events: none;
+}
+.sprite {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.sprite.pop-in {
+  animation: pop-in 0.45s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+.sprite.wiggle {
+  animation: wiggle 0.55s ease;
+}
+.hl {
+  animation: hl-pop 0.55s cubic-bezier(0.3, 1.6, 0.5, 1) forwards;
+}
+.hl.out {
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.ring {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.45s ease-out forwards;
+}
+.dim-rect {
+  fill: var(--bg);
+  opacity: 0.6;
+  animation: fade-in 0.35s ease both;
+}
+.halo {
+  fill: none;
+  stroke: #fff6cf;
+  stroke-width: 8;
+  stroke-linejoin: round;
+  animation: halo 1.1s ease-in-out infinite alternate;
+}
+
+/* подпись слова */
+.caption {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, calc(-100% - 1.6cqw));
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: max(18px, 3.6cqw);
+  line-height: 1.1;
+  padding: 0.7cqw 2cqw 0.9cqw;
+  border-radius: 99px;
+  white-space: nowrap;
+  box-shadow: 0 0.6cqw 2cqw #0b1a3366;
+  pointer-events: none;
+  animation: cap-in 0.32s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+.caption::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -1cqw;
+  border: 1cqw solid transparent;
+  border-top-color: var(--white);
+  border-bottom: 0;
+}
+.caption.below {
+  transform: translate(-50%, 1.6cqw);
+}
+.caption.below::after {
+  top: auto;
+  bottom: 100%;
+  border-top: 0;
+  border-bottom: 1cqw solid var(--white);
+}
+.caption.out {
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+/* пузырь с фразой Mo (нажать — повторить) */
+.bubble {
+  position: absolute;
+  z-index: 4;
+  top: 2cqw;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: max(17px, 3.3cqw);
+  line-height: 1.1;
+  white-space: nowrap;
+  padding: 0.9cqw 2.6cqw 0.9cqw 0.9cqw;
+  border-radius: 99px;
+  box-shadow: 0 0.8cqw 2.4cqw #0b1a3366;
+}
+.bubble.icon-only {
+  padding: 0.9cqw;
+  gap: 0;
+}
+.bubble-ic {
+  width: max(34px, 5.6cqw);
+  height: max(34px, 5.6cqw);
+  border-radius: 50%;
+  background: var(--yellow);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.bubble-ic svg {
+  width: 58%;
+  height: 58%;
+}
+.bubble.hidden,
+.back-btn.hidden {
+  display: none;
+}
+.bubble.pop {
+  animation: bubble-pop 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.bubble.tap {
+  animation: bubble-tap 0.3s ease;
+}
+.back-btn {
+  position: absolute;
+  z-index: 4;
+  left: 1.8cqw;
+  top: 1.8cqw;
+  width: max(48px, 7.4cqw);
+  height: max(48px, 7.4cqw);
+  background: #0b1a33b3;
+  box-shadow: 0 0.6cqw 2cqw #0006;
+}
+
+/* конец круга */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: #0b1a33a6;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4cqh;
+  animation: fade-in 0.35s ease both;
+}
+.done-face {
+  width: 22cqw;
+  height: 22cqw;
+  animation: pop-in 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+.done-face svg {
+  width: 100%;
+  height: 100%;
+}
+.done-buttons {
+  display: flex;
+  gap: 4cqw;
+  align-items: center;
+}
+.round-big {
+  width: 11cqw;
+  height: 11cqw;
+  border-radius: 50%;
+  background: #ffffff26;
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1cqw 3cqw #0006;
+  animation: pop-in 0.4s 0.2s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+.round-big svg {
+  width: 48%;
+  height: 48%;
+}
+.round-big:last-child {
+  width: 14cqw;
+  height: 14cqw;
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- Mo */
+.mo {
+  position: absolute;
+  z-index: 5;
+  cursor: pointer;
+  transform-origin: 50% 90%;
+  animation: bob 2.8s ease-in-out infinite;
+}
+.mo svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: transform 0.3s ease;
+}
+.mo.jump {
+  animation: jump 0.7s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.mo.sad svg {
+  transform: rotate(-5deg) translateY(3%);
+}
+
+/* ---------------------------------------------------------------- эффекты поверх всего */
+.fx-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+}
+.face {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0);
+  animation: face-in 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) forwards;
+  filter: drop-shadow(0 1vh 2vh #0008);
+}
+.face svg {
+  width: 100%;
+  height: 100%;
+}
+.face.out {
+  animation: face-out 0.35s ease forwards;
+}
+.star {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0.3);
+  animation: star-fly 1.1s cubic-bezier(0.2, 0.8, 0.4, 1) both;
+}
+.star svg {
+  width: 100%;
+  height: 100%;
+}
+.flyer {
+  position: absolute;
+  object-fit: contain;
+  filter: drop-shadow(0 1vh 1.5vh #0007);
+  will-change: transform;
+}
+.coin-fly {
+  position: absolute;
+  filter: drop-shadow(0 0.6vh 1vh #0007);
+}
+.coin-fly svg {
+  width: 100%;
+  height: 100%;
+}
+.plus-one {
+  position: absolute;
+  font-weight: 800;
+  font-size: clamp(22px, 4vh, 40px);
+  color: var(--yellow);
+  text-shadow: 0 2px 8px #0009;
+  animation: rise 1.2s ease-out forwards;
+}
+.coins.bump {
+  animation: bump 0.4s cubic-bezier(0.3, 1.8, 0.5, 1);
+}
+.nope {
+  animation: nope 0.45s ease;
+}
+
+/* ---------------------------------------------------------------- «поверните устройство» */
+.rotate {
+  display: none;
+}
+@media (orientation: portrait) {
+  .rotate {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    background: var(--bg);
+    color: var(--yellow);
+  }
+  .rotate svg {
+    width: 30vw;
+    height: 30vw;
+    animation: rotate-hint 2s ease-in-out infinite;
+  }
+}
+
+/* ---------------------------------------------------------------- анимации */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes breathe {
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 2.4vh #ffd34d22, 0 1.4vh 4vh #0008;
+  }
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-2.5%);
+  }
+}
+@keyframes jump {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(2%) scale(1.06, 0.92);
+  }
+  55% {
+    transform: translateY(-16%) scale(0.96, 1.05);
+  }
+  80% {
+    transform: translateY(0) scale(1.04, 0.95);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes hl-pop {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1.07);
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes halo {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes cap-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+@keyframes bubble-pop {
+  from {
+    scale: 0.7;
+    opacity: 0;
+  }
+}
+@keyframes bubble-tap {
+  50% {
+    scale: 0.92;
+  }
+}
+@keyframes face-in {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes face-out {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+  }
+}
+@keyframes star-fly {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3) rotate(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+@keyframes pop-in {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+}
+@keyframes wiggle {
+  20% {
+    transform: rotate(-8deg);
+  }
+  40% {
+    transform: rotate(7deg);
+  }
+  60% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes stage-pulse {
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 0 0 calc(var(--top) * 0.12) #ffd34d33;
+  }
+}
+@keyframes rise {
+  from {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(-10px) scale(1.1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-60px) scale(1);
+    opacity: 0;
+  }
+}
+@keyframes bump {
+  50% {
+    transform: scale(1.18);
+  }
+}
+@keyframes nope {
+  20% {
+    translate: -6px 0;
+  }
+  40% {
+    translate: 6px 0;
+  }
+  60% {
+    translate: -4px 0;
+  }
+  80% {
+    translate: 3px 0;
+  }
+}
+@keyframes rotate-hint {
+  0%,
+  30% {
+    transform: rotate(90deg);
+  }
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+}

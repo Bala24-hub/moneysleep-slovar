@@ -1,0 +1,11 @@
+{
+  "defaultLang": "en-US",
+  "languages": [
+    { "lang": "en-US", "flag": "us" },
+    { "lang": "de-DE", "flag": "de" },
+    { "lang": "es-419", "flag": "mx" }
+  ],
+  "rooms": ["kitchen"],
+  "plannedWords": 130,
+  "free": [{ "lang": "*", "room": "kitchen" }]
+}
