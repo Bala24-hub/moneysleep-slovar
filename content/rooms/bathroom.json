@@ -1,0 +1,333 @@
+{
+  "id": "bathroom",
+  "order": 2,
+  "icon": "bathtub",
+  "start": "bathroom",
+  "_note": "Черновик: картинок и зон ещё нет (scenes пусто). Слова, действия и цепочка — для пакетов и озвучки.",
+  "scenes": {},
+  "checkTypes": [
+    "show_me",
+    "where"
+  ],
+  "words": [
+    {
+      "id": "bathroom.bathtub",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.shower",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.sink",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.faucet",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.toilet",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.mirror",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.towel",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.bath_mat",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.laundry_basket",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.stool",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.hook",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.soap",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.toothbrush",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.toothpaste",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.shampoo",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.comb",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.hairbrush",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.washcloth",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.toilet_paper",
+      "scene": "bathroom",
+      "zones": {}
+    },
+    {
+      "id": "bathroom.rubber_duck",
+      "scene": "bathroom",
+      "zones": {}
+    }
+  ],
+  "stages": {
+    "phrases": {
+      "scene": "bathroom",
+      "choices": 3
+    }
+  },
+  "states": {
+    "bathroom.faucet": {
+      "initial": "off",
+      "values": [
+        "off",
+        "on"
+      ]
+    },
+    "bathroom.towel": {
+      "initial": "on_hook",
+      "values": [
+        "on_hook",
+        "in_hands",
+        "in_basket"
+      ]
+    }
+  },
+  "actions": [
+    {
+      "id": "bathroom.turn_on_water",
+      "objects": [
+        "bathroom.faucet"
+      ],
+      "taps": [
+        [
+          "bathroom.faucet"
+        ]
+      ],
+      "requires": {
+        "bathroom.faucet": "off"
+      },
+      "sets": {
+        "bathroom.faucet": "on"
+      },
+      "pair": "bathroom.turn_off_water"
+    },
+    {
+      "id": "bathroom.turn_off_water",
+      "objects": [
+        "bathroom.faucet"
+      ],
+      "taps": [
+        [
+          "bathroom.faucet"
+        ]
+      ],
+      "requires": {
+        "bathroom.faucet": "on"
+      },
+      "sets": {
+        "bathroom.faucet": "off"
+      },
+      "pair": "bathroom.turn_on_water"
+    },
+    {
+      "id": "bathroom.wash_hands",
+      "objects": [],
+      "taps": [],
+      "chain": "bathroom.wash_hands"
+    },
+    {
+      "id": "bathroom.lather_up",
+      "objects": [
+        "bathroom.soap"
+      ],
+      "taps": [
+        [
+          "bathroom.soap"
+        ]
+      ]
+    },
+    {
+      "id": "bathroom.rinse_off",
+      "objects": [
+        "bathroom.faucet"
+      ],
+      "taps": [
+        [
+          "bathroom.faucet"
+        ]
+      ],
+      "requires": {
+        "bathroom.faucet": "on"
+      }
+    },
+    {
+      "id": "bathroom.dry_hands",
+      "objects": [
+        "bathroom.towel"
+      ],
+      "taps": [
+        [
+          "bathroom.towel"
+        ]
+      ]
+    },
+    {
+      "id": "bathroom.brush_teeth",
+      "objects": [
+        "bathroom.toothbrush"
+      ],
+      "taps": [
+        [
+          "bathroom.toothbrush"
+        ]
+      ]
+    },
+    {
+      "id": "bathroom.squeeze_toothpaste",
+      "objects": [
+        "bathroom.toothpaste"
+      ],
+      "taps": [
+        [
+          "bathroom.toothpaste"
+        ]
+      ]
+    },
+    {
+      "id": "bathroom.spit_it_out",
+      "objects": [
+        "bathroom.sink"
+      ],
+      "taps": [
+        [
+          "bathroom.sink"
+        ]
+      ],
+      "pair": "bathroom.rinse_mouth"
+    },
+    {
+      "id": "bathroom.rinse_mouth",
+      "objects": [
+        "bathroom.faucet"
+      ],
+      "taps": [
+        [
+          "bathroom.faucet"
+        ]
+      ],
+      "pair": "bathroom.spit_it_out"
+    },
+    {
+      "id": "bathroom.flush_toilet",
+      "objects": [
+        "bathroom.toilet"
+      ],
+      "taps": [
+        [
+          "bathroom.toilet"
+        ]
+      ]
+    },
+    {
+      "id": "bathroom.hang_towel",
+      "objects": [
+        "bathroom.towel",
+        "bathroom.hook"
+      ],
+      "taps": [
+        [
+          "bathroom.towel"
+        ],
+        [
+          "bathroom.hook"
+        ]
+      ],
+      "sets": {
+        "bathroom.towel": "on_hook"
+      }
+    },
+    {
+      "id": "bathroom.put_towel_in_basket",
+      "objects": [
+        "bathroom.towel",
+        "bathroom.laundry_basket"
+      ],
+      "taps": [
+        [
+          "bathroom.towel"
+        ],
+        [
+          "bathroom.laundry_basket"
+        ]
+      ],
+      "sets": {
+        "bathroom.towel": "in_basket"
+      }
+    },
+    {
+      "id": "bathroom.time_for_bath",
+      "objects": [
+        "bathroom.bathtub"
+      ],
+      "taps": [
+        [
+          "bathroom.bathtub"
+        ]
+      ]
+    }
+  ],
+  "chains": [
+    {
+      "id": "bathroom.wash_hands",
+      "steps": [
+        "bathroom.turn_on_water",
+        "bathroom.lather_up",
+        "bathroom.rinse_off",
+        "bathroom.turn_off_water",
+        "bathroom.dry_hands"
+      ]
+    }
+  ]
+}

@@ -87,7 +87,8 @@ export interface ActionDef {
   objects: string[];
   /** Что нажать: шаги по порядку, в шаге — любой из вариантов. [["plate"],["placemat"]] — два нажатия. */
   taps: string[][];
-  scene: string;
+  /** Где выполняется (если не указано — сцена первого предмета). */
+  scene?: string;
   /** Состояния до действия (иначе фраза сейчас не к месту). */
   requires?: Record<string, string>;
   /** Состояния после действия. */
@@ -96,6 +97,18 @@ export interface ActionDef {
   pair?: string;
   /** Фраза запускает цепочку (Time to clean up!). */
   chain?: string;
+}
+
+/**
+ * Предложение текста-матрицы комнаты (рассказ Mo от первого лица со всеми словами и фразами комнаты).
+ * Связи с словами/действиями не зависят от языка: по ним подсвечиваем предмет в наградном ролике,
+ * выбираем пропуск (на слух — kid, пропущенное слово — reader).
+ */
+export interface MatrixSentence {
+  /** matrix.<комната>.NN — id текста и аудио в пакете; целиком — matrix.<комната>.full */
+  id: string;
+  words: string[];
+  actions?: string[];
 }
 
 /** Цепочка действий: «Time to clean up!» → clear → scrape → load → wipe → trash. */
@@ -119,6 +132,7 @@ export interface RoomDef {
   props?: PropDef[];
   actions?: ActionDef[];
   chains?: ChainDef[];
+  matrix?: MatrixSentence[];
 }
 
 export interface Line {
@@ -147,6 +161,10 @@ export interface Pack {
   mo: Record<string, Line>;
   /** Фразы-действия целиком: action.<id> → «Open the fridge.» */
   actions?: Record<string, Line>;
+  /** Текст-матрица: по предложениям (matrix.<комната>.NN) и целиком (matrix.<комната>.full). */
+  matrix?: Record<string, Line>;
+  /** Ложные плитки для сборки предложений (reader): EN in/on/up/out. Не озвучиваются. */
+  particles?: string[];
 }
 
 export interface LanguageDef {

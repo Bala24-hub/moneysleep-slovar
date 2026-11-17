@@ -28,6 +28,8 @@ const pack: Pack = {
   phrases: {},
   mo: {},
   actions: {},
+  matrix: {},
+  ...(old?.particles ? { particles: old.particles } : {}),
 };
 const line = (id: string, prev?: Line): Line => ({ text: prev?.text ?? '', audio: prev?.audio || `${id}.mp3` });
 for (const id of exp.words) {
@@ -37,14 +39,16 @@ for (const id of exp.words) {
 for (const ph of exp.phrases) pack.phrases[ph.id] = line(ph.id, old?.phrases[ph.id]);
 for (const id of exp.mo) pack.mo[id] = line(id, old?.mo[id]);
 for (const id of exp.actions) pack.actions![id] = line(id, old?.actions?.[id]);
+for (const id of exp.matrix) pack.matrix![id] = line(id, old?.matrix?.[id]);
 // записи, которых больше нет в комнатах, сохраняем (валидатор о них предупредит)
 for (const [k, v] of Object.entries(old?.words ?? {})) pack.words[k] ??= v;
 for (const [k, v] of Object.entries(old?.phrases ?? {})) pack.phrases[k] ??= v;
 for (const [k, v] of Object.entries(old?.mo ?? {})) pack.mo[k] ??= v;
 for (const [k, v] of Object.entries(old?.actions ?? {})) pack.actions![k] ??= v;
+for (const [k, v] of Object.entries(old?.matrix ?? {})) pack.matrix![k] ??= v;
 
 const out = join(ROOT, packPath(lang));
 mkdirSync(dirname(out), { recursive: true });
 mkdirSync(join(ROOT, pack.audioDir), { recursive: true });
 writeFileSync(out, JSON.stringify(pack, null, 2) + '\n');
-console.log(`${packPath(lang)}: слов ${exp.words.length}, фраз ${exp.phrases.length}, действий ${exp.actions.length}, реплик Mo ${exp.mo.length}`);
+console.log(`${packPath(lang)}: слов ${exp.words.length}, фраз ${exp.phrases.length}, действий ${exp.actions.length}, матрица ${exp.matrix.length}, реплик Mo ${exp.mo.length}`);

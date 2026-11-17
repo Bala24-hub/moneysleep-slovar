@@ -72,9 +72,22 @@ export function validateLang(lang: string): LangReport {
   }
   for (const id of exp.mo) count(lineIssues(id, pack.mo[id], pack));
   for (const id of exp.actions) count(lineIssues(id, pack.actions?.[id], pack));
+  for (const id of exp.matrix) count(lineIssues(id, pack.matrix?.[id], pack));
+  // в каждом предложении матрицы должны встречаться его слова (иначе перевод потерял слово)
+  for (const room of loadRooms(cat))
+    for (const m of room.matrix ?? []) {
+      const t = pack.matrix?.[m.id]?.text?.toLowerCase();
+      if (!t) continue;
+      for (const wid of m.words) {
+        const wt = pack.words[wid]?.text?.toLowerCase();
+        if (!wt) continue;
+        const bare = pack.articles.reduce((x, a) => (x.startsWith(a + ' ') ? x.slice(a.length + 1) : x), wt);
+        if (!t.includes(bare)) rep.errors.push({ id: m.id, what: 'text', detail: `в предложении нет слова «${bare}» (${wid})` });
+      }
+    }
 
-  const known = new Set([...exp.words, ...exp.phrases.map((p) => p.id), ...exp.mo, ...exp.actions]);
-  for (const k of [...Object.keys(pack.words), ...Object.keys(pack.phrases), ...Object.keys(pack.mo), ...Object.keys(pack.actions ?? {})])
+  const known = new Set([...exp.words, ...exp.phrases.map((p) => p.id), ...exp.mo, ...exp.actions, ...exp.matrix]);
+  for (const k of [...Object.keys(pack.words), ...Object.keys(pack.phrases), ...Object.keys(pack.mo), ...Object.keys(pack.actions ?? {}), ...Object.keys(pack.matrix ?? {})])
     if (!known.has(k)) rep.warnings.push({ id: k, what: 'extra', detail: 'запись не используется ни в одной комнате' });
   return rep;
 }
@@ -101,7 +114,7 @@ export function validateRooms(): string[] {
       const w = `${room.id}/${a.id}`;
       for (const o of a.objects) if (!words.has(o)) out.push(`${w}: нет слова ${o}`);
       for (const step of a.taps) for (const t of step) if (!tappable.has(t)) out.push(`${w}: нечего нажать — ${t}`);
-      if (!room.scenes[a.scene]) out.push(`${w}: нет сцены ${a.scene}`);
+      if (a.scene && !room.scenes[a.scene]) out.push(`${w}: нет сцены ${a.scene}`);
       stateOk(a.requires, w);
       stateOk(a.sets, w);
       if (a.pair && actions.get(a.pair)?.pair !== a.id) out.push(`${w}: пара ${a.pair} не взаимная`);
@@ -109,6 +122,18 @@ export function validateRooms(): string[] {
       if (!a.chain && a.taps.length === 0) out.push(`${w}: не указано, что нажать`);
     }
     for (const c of chains.values()) for (const st of c.steps) if (!actions.has(st)) out.push(`${room.id}/${c.id}: нет шага ${st}`);
+    const seen = new Set<string>();
+    for (const m of room.matrix ?? []) {
+      if (seen.has(m.id)) out.push(`${room.id}: повтор ${m.id}`);
+      seen.add(m.id);
+      for (const wid of m.words) if (!words.has(wid)) out.push(`${m.id}: нет слова ${wid}`);
+      for (const aid of m.actions ?? []) if (!actions.has(aid)) out.push(`${m.id}: нет действия ${aid}`);
+    }
+    if (room.matrix?.length) {
+      const covered = new Set(room.matrix.flatMap((m) => m.words));
+      const missing = room.words.filter((w) => !covered.has(w.id)).map((w) => w.id);
+      if (missing.length) out.push(`${room.id}: матрица не упоминает ${missing.join(', ')}`);
+    }
   }
   return out;
 }

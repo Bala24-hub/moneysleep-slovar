@@ -172,6 +172,166 @@
         "text": "",
         "audio": "form.kitchen.sink.mp3"
       }
+    },
+    "bathroom.bathtub": {
+      "text": "",
+      "audio": "bathroom.bathtub.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.bathtub.mp3"
+      }
+    },
+    "bathroom.shower": {
+      "text": "",
+      "audio": "bathroom.shower.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.shower.mp3"
+      }
+    },
+    "bathroom.sink": {
+      "text": "",
+      "audio": "bathroom.sink.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.sink.mp3"
+      }
+    },
+    "bathroom.faucet": {
+      "text": "",
+      "audio": "bathroom.faucet.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.faucet.mp3"
+      }
+    },
+    "bathroom.toilet": {
+      "text": "",
+      "audio": "bathroom.toilet.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.toilet.mp3"
+      }
+    },
+    "bathroom.mirror": {
+      "text": "",
+      "audio": "bathroom.mirror.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.mirror.mp3"
+      }
+    },
+    "bathroom.towel": {
+      "text": "",
+      "audio": "bathroom.towel.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.towel.mp3"
+      }
+    },
+    "bathroom.bath_mat": {
+      "text": "",
+      "audio": "bathroom.bath_mat.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.bath_mat.mp3"
+      }
+    },
+    "bathroom.laundry_basket": {
+      "text": "",
+      "audio": "bathroom.laundry_basket.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.laundry_basket.mp3"
+      }
+    },
+    "bathroom.stool": {
+      "text": "",
+      "audio": "bathroom.stool.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.stool.mp3"
+      }
+    },
+    "bathroom.hook": {
+      "text": "",
+      "audio": "bathroom.hook.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.hook.mp3"
+      }
+    },
+    "bathroom.soap": {
+      "text": "",
+      "audio": "bathroom.soap.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.soap.mp3"
+      }
+    },
+    "bathroom.toothbrush": {
+      "text": "",
+      "audio": "bathroom.toothbrush.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.toothbrush.mp3"
+      }
+    },
+    "bathroom.toothpaste": {
+      "text": "",
+      "audio": "bathroom.toothpaste.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.toothpaste.mp3"
+      }
+    },
+    "bathroom.shampoo": {
+      "text": "",
+      "audio": "bathroom.shampoo.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.shampoo.mp3"
+      }
+    },
+    "bathroom.comb": {
+      "text": "",
+      "audio": "bathroom.comb.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.comb.mp3"
+      }
+    },
+    "bathroom.hairbrush": {
+      "text": "",
+      "audio": "bathroom.hairbrush.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.hairbrush.mp3"
+      }
+    },
+    "bathroom.washcloth": {
+      "text": "",
+      "audio": "bathroom.washcloth.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.washcloth.mp3"
+      }
+    },
+    "bathroom.toilet_paper": {
+      "text": "",
+      "audio": "bathroom.toilet_paper.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.toilet_paper.mp3"
+      }
+    },
+    "bathroom.rubber_duck": {
+      "text": "",
+      "audio": "bathroom.rubber_duck.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.bathroom.rubber_duck.mp3"
+      }
     }
   },
   "phrases": {
@@ -354,6 +514,166 @@
     "check.where.kitchen.sink": {
       "text": "",
       "audio": "check.where.kitchen.sink.mp3"
+    },
+    "check.show_me.bathroom.bathtub": {
+      "text": "",
+      "audio": "check.show_me.bathroom.bathtub.mp3"
+    },
+    "check.where.bathroom.bathtub": {
+      "text": "",
+      "audio": "check.where.bathroom.bathtub.mp3"
+    },
+    "check.show_me.bathroom.shower": {
+      "text": "",
+      "audio": "check.show_me.bathroom.shower.mp3"
+    },
+    "check.where.bathroom.shower": {
+      "text": "",
+      "audio": "check.where.bathroom.shower.mp3"
+    },
+    "check.show_me.bathroom.sink": {
+      "text": "",
+      "audio": "check.show_me.bathroom.sink.mp3"
+    },
+    "check.where.bathroom.sink": {
+      "text": "",
+      "audio": "check.where.bathroom.sink.mp3"
+    },
+    "check.show_me.bathroom.faucet": {
+      "text": "",
+      "audio": "check.show_me.bathroom.faucet.mp3"
+    },
+    "check.where.bathroom.faucet": {
+      "text": "",
+      "audio": "check.where.bathroom.faucet.mp3"
+    },
+    "check.show_me.bathroom.toilet": {
+      "text": "",
+      "audio": "check.show_me.bathroom.toilet.mp3"
+    },
+    "check.where.bathroom.toilet": {
+      "text": "",
+      "audio": "check.where.bathroom.toilet.mp3"
+    },
+    "check.show_me.bathroom.mirror": {
+      "text": "",
+      "audio": "check.show_me.bathroom.mirror.mp3"
+    },
+    "check.where.bathroom.mirror": {
+      "text": "",
+      "audio": "check.where.bathroom.mirror.mp3"
+    },
+    "check.show_me.bathroom.towel": {
+      "text": "",
+      "audio": "check.show_me.bathroom.towel.mp3"
+    },
+    "check.where.bathroom.towel": {
+      "text": "",
+      "audio": "check.where.bathroom.towel.mp3"
+    },
+    "check.show_me.bathroom.bath_mat": {
+      "text": "",
+      "audio": "check.show_me.bathroom.bath_mat.mp3"
+    },
+    "check.where.bathroom.bath_mat": {
+      "text": "",
+      "audio": "check.where.bathroom.bath_mat.mp3"
+    },
+    "check.show_me.bathroom.laundry_basket": {
+      "text": "",
+      "audio": "check.show_me.bathroom.laundry_basket.mp3"
+    },
+    "check.where.bathroom.laundry_basket": {
+      "text": "",
+      "audio": "check.where.bathroom.laundry_basket.mp3"
+    },
+    "check.show_me.bathroom.stool": {
+      "text": "",
+      "audio": "check.show_me.bathroom.stool.mp3"
+    },
+    "check.where.bathroom.stool": {
+      "text": "",
+      "audio": "check.where.bathroom.stool.mp3"
+    },
+    "check.show_me.bathroom.hook": {
+      "text": "",
+      "audio": "check.show_me.bathroom.hook.mp3"
+    },
+    "check.where.bathroom.hook": {
+      "text": "",
+      "audio": "check.where.bathroom.hook.mp3"
+    },
+    "check.show_me.bathroom.soap": {
+      "text": "",
+      "audio": "check.show_me.bathroom.soap.mp3"
+    },
+    "check.where.bathroom.soap": {
+      "text": "",
+      "audio": "check.where.bathroom.soap.mp3"
+    },
+    "check.show_me.bathroom.toothbrush": {
+      "text": "",
+      "audio": "check.show_me.bathroom.toothbrush.mp3"
+    },
+    "check.where.bathroom.toothbrush": {
+      "text": "",
+      "audio": "check.where.bathroom.toothbrush.mp3"
+    },
+    "check.show_me.bathroom.toothpaste": {
+      "text": "",
+      "audio": "check.show_me.bathroom.toothpaste.mp3"
+    },
+    "check.where.bathroom.toothpaste": {
+      "text": "",
+      "audio": "check.where.bathroom.toothpaste.mp3"
+    },
+    "check.show_me.bathroom.shampoo": {
+      "text": "",
+      "audio": "check.show_me.bathroom.shampoo.mp3"
+    },
+    "check.where.bathroom.shampoo": {
+      "text": "",
+      "audio": "check.where.bathroom.shampoo.mp3"
+    },
+    "check.show_me.bathroom.comb": {
+      "text": "",
+      "audio": "check.show_me.bathroom.comb.mp3"
+    },
+    "check.where.bathroom.comb": {
+      "text": "",
+      "audio": "check.where.bathroom.comb.mp3"
+    },
+    "check.show_me.bathroom.hairbrush": {
+      "text": "",
+      "audio": "check.show_me.bathroom.hairbrush.mp3"
+    },
+    "check.where.bathroom.hairbrush": {
+      "text": "",
+      "audio": "check.where.bathroom.hairbrush.mp3"
+    },
+    "check.show_me.bathroom.washcloth": {
+      "text": "",
+      "audio": "check.show_me.bathroom.washcloth.mp3"
+    },
+    "check.where.bathroom.washcloth": {
+      "text": "",
+      "audio": "check.where.bathroom.washcloth.mp3"
+    },
+    "check.show_me.bathroom.toilet_paper": {
+      "text": "",
+      "audio": "check.show_me.bathroom.toilet_paper.mp3"
+    },
+    "check.where.bathroom.toilet_paper": {
+      "text": "",
+      "audio": "check.where.bathroom.toilet_paper.mp3"
+    },
+    "check.show_me.bathroom.rubber_duck": {
+      "text": "",
+      "audio": "check.show_me.bathroom.rubber_duck.mp3"
+    },
+    "check.where.bathroom.rubber_duck": {
+      "text": "",
+      "audio": "check.where.bathroom.rubber_duck.mp3"
     }
   },
   "mo": {
@@ -438,6 +758,184 @@
     "action.kitchen.clean_up": {
       "text": "",
       "audio": "action.kitchen.clean_up.mp3"
+    },
+    "action.bathroom.turn_on_water": {
+      "text": "",
+      "audio": "action.bathroom.turn_on_water.mp3"
+    },
+    "action.bathroom.turn_off_water": {
+      "text": "",
+      "audio": "action.bathroom.turn_off_water.mp3"
+    },
+    "action.bathroom.wash_hands": {
+      "text": "",
+      "audio": "action.bathroom.wash_hands.mp3"
+    },
+    "action.bathroom.lather_up": {
+      "text": "",
+      "audio": "action.bathroom.lather_up.mp3"
+    },
+    "action.bathroom.rinse_off": {
+      "text": "",
+      "audio": "action.bathroom.rinse_off.mp3"
+    },
+    "action.bathroom.dry_hands": {
+      "text": "",
+      "audio": "action.bathroom.dry_hands.mp3"
+    },
+    "action.bathroom.brush_teeth": {
+      "text": "",
+      "audio": "action.bathroom.brush_teeth.mp3"
+    },
+    "action.bathroom.squeeze_toothpaste": {
+      "text": "",
+      "audio": "action.bathroom.squeeze_toothpaste.mp3"
+    },
+    "action.bathroom.spit_it_out": {
+      "text": "",
+      "audio": "action.bathroom.spit_it_out.mp3"
+    },
+    "action.bathroom.rinse_mouth": {
+      "text": "",
+      "audio": "action.bathroom.rinse_mouth.mp3"
+    },
+    "action.bathroom.flush_toilet": {
+      "text": "",
+      "audio": "action.bathroom.flush_toilet.mp3"
+    },
+    "action.bathroom.hang_towel": {
+      "text": "",
+      "audio": "action.bathroom.hang_towel.mp3"
+    },
+    "action.bathroom.put_towel_in_basket": {
+      "text": "",
+      "audio": "action.bathroom.put_towel_in_basket.mp3"
+    },
+    "action.bathroom.time_for_bath": {
+      "text": "",
+      "audio": "action.bathroom.time_for_bath.mp3"
+    }
+  },
+  "matrix": {
+    "matrix.kitchen.01": {
+      "text": "",
+      "audio": "matrix.kitchen.01.mp3"
+    },
+    "matrix.kitchen.02": {
+      "text": "",
+      "audio": "matrix.kitchen.02.mp3"
+    },
+    "matrix.kitchen.03": {
+      "text": "",
+      "audio": "matrix.kitchen.03.mp3"
+    },
+    "matrix.kitchen.04": {
+      "text": "",
+      "audio": "matrix.kitchen.04.mp3"
+    },
+    "matrix.kitchen.05": {
+      "text": "",
+      "audio": "matrix.kitchen.05.mp3"
+    },
+    "matrix.kitchen.06": {
+      "text": "",
+      "audio": "matrix.kitchen.06.mp3"
+    },
+    "matrix.kitchen.07": {
+      "text": "",
+      "audio": "matrix.kitchen.07.mp3"
+    },
+    "matrix.kitchen.08": {
+      "text": "",
+      "audio": "matrix.kitchen.08.mp3"
+    },
+    "matrix.kitchen.09": {
+      "text": "",
+      "audio": "matrix.kitchen.09.mp3"
+    },
+    "matrix.kitchen.10": {
+      "text": "",
+      "audio": "matrix.kitchen.10.mp3"
+    },
+    "matrix.kitchen.11": {
+      "text": "",
+      "audio": "matrix.kitchen.11.mp3"
+    },
+    "matrix.kitchen.12": {
+      "text": "",
+      "audio": "matrix.kitchen.12.mp3"
+    },
+    "matrix.kitchen.13": {
+      "text": "",
+      "audio": "matrix.kitchen.13.mp3"
+    },
+    "matrix.kitchen.14": {
+      "text": "",
+      "audio": "matrix.kitchen.14.mp3"
+    },
+    "matrix.kitchen.15": {
+      "text": "",
+      "audio": "matrix.kitchen.15.mp3"
+    },
+    "matrix.kitchen.16": {
+      "text": "",
+      "audio": "matrix.kitchen.16.mp3"
+    },
+    "matrix.kitchen.17": {
+      "text": "",
+      "audio": "matrix.kitchen.17.mp3"
+    },
+    "matrix.kitchen.18": {
+      "text": "",
+      "audio": "matrix.kitchen.18.mp3"
+    },
+    "matrix.kitchen.19": {
+      "text": "",
+      "audio": "matrix.kitchen.19.mp3"
+    },
+    "matrix.kitchen.20": {
+      "text": "",
+      "audio": "matrix.kitchen.20.mp3"
+    },
+    "matrix.kitchen.21": {
+      "text": "",
+      "audio": "matrix.kitchen.21.mp3"
+    },
+    "matrix.kitchen.22": {
+      "text": "",
+      "audio": "matrix.kitchen.22.mp3"
+    },
+    "matrix.kitchen.23": {
+      "text": "",
+      "audio": "matrix.kitchen.23.mp3"
+    },
+    "matrix.kitchen.24": {
+      "text": "",
+      "audio": "matrix.kitchen.24.mp3"
+    },
+    "matrix.kitchen.25": {
+      "text": "",
+      "audio": "matrix.kitchen.25.mp3"
+    },
+    "matrix.kitchen.26": {
+      "text": "",
+      "audio": "matrix.kitchen.26.mp3"
+    },
+    "matrix.kitchen.27": {
+      "text": "",
+      "audio": "matrix.kitchen.27.mp3"
+    },
+    "matrix.kitchen.28": {
+      "text": "",
+      "audio": "matrix.kitchen.28.mp3"
+    },
+    "matrix.kitchen.29": {
+      "text": "",
+      "audio": "matrix.kitchen.29.mp3"
+    },
+    "matrix.kitchen.full": {
+      "text": "",
+      "audio": "matrix.kitchen.full.mp3"
     }
   }
 }

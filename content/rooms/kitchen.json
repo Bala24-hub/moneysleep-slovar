@@ -2428,5 +2428,207 @@
         "kitchen.take_out_trash"
       ]
     }
+  ],
+  "matrix": [
+    {
+      "id": "matrix.kitchen.01",
+      "words": []
+    },
+    {
+      "id": "matrix.kitchen.02",
+      "words": []
+    },
+    {
+      "id": "matrix.kitchen.03",
+      "words": [
+        "kitchen.fridge"
+      ],
+      "actions": [
+        "kitchen.open_fridge"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.04",
+      "words": []
+    },
+    {
+      "id": "matrix.kitchen.05",
+      "words": [
+        "kitchen.fridge"
+      ],
+      "actions": [
+        "kitchen.close_fridge"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.06",
+      "words": [
+        "kitchen.pot",
+        "kitchen.stove"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.07",
+      "words": [
+        "kitchen.frying_pan"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.08",
+      "words": [
+        "kitchen.oven"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.09",
+      "words": [
+        "kitchen.window"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.10",
+      "words": []
+    },
+    {
+      "id": "matrix.kitchen.11",
+      "words": [
+        "kitchen.table"
+      ],
+      "actions": [
+        "kitchen.set_table"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.12",
+      "words": [
+        "kitchen.table",
+        "kitchen.placemat"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.13",
+      "words": [
+        "kitchen.plate",
+        "kitchen.placemat"
+      ],
+      "actions": [
+        "kitchen.put_plate_on_placemat"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.14",
+      "words": [
+        "kitchen.spoon",
+        "kitchen.fork",
+        "kitchen.knife"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.15",
+      "words": [
+        "kitchen.cup",
+        "kitchen.bowl"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.16",
+      "words": [
+        "kitchen.chair"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.17",
+      "words": []
+    },
+    {
+      "id": "matrix.kitchen.18",
+      "words": []
+    },
+    {
+      "id": "matrix.kitchen.19",
+      "words": [],
+      "actions": [
+        "kitchen.clean_up"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.20",
+      "words": [
+        "kitchen.table"
+      ],
+      "actions": [
+        "kitchen.clear_table"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.21",
+      "words": [
+        "kitchen.plate",
+        "kitchen.trash_can"
+      ],
+      "actions": [
+        "kitchen.scrape_plate"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.22",
+      "words": [
+        "kitchen.dishwasher"
+      ],
+      "actions": [
+        "kitchen.load_dishwasher"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.23",
+      "words": [
+        "kitchen.kitchen_towel",
+        "kitchen.pot",
+        "kitchen.sink"
+      ],
+      "actions": [
+        "kitchen.wash_dishes",
+        "kitchen.dry_dishes"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.24",
+      "words": [
+        "kitchen.cutting_board"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.25",
+      "words": [
+        "kitchen.table"
+      ],
+      "actions": [
+        "kitchen.wipe_table"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.26",
+      "words": [
+        "kitchen.chair"
+      ],
+      "actions": [
+        "kitchen.push_in_chair"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.27",
+      "words": [],
+      "actions": [
+        "kitchen.take_out_trash"
+      ]
+    },
+    {
+      "id": "matrix.kitchen.28",
+      "words": []
+    },
+    {
+      "id": "matrix.kitchen.29",
+      "words": []
+    }
   ]
 }

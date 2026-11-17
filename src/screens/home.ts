@@ -19,7 +19,9 @@ export class HomeScreen implements Screen {
     this.mo = new Mo(app.audio, 'mo-home');
     const grid = h('div', { class: 'rooms' });
     const { catalog, rooms, pack } = app.content;
-    for (const room of rooms) {
+    // комната без картинок (черновик: слова и озвучка уже есть) показывается как «скоро»
+    const ready = rooms.filter((r) => !!r.scenes[r.start]);
+    for (const room of ready) {
       const open = hasAccess(catalog.free, [], pack.lang, room.id);
       const st = app.progress.stages(room);
       const dots = h('div', { class: 'room-stages' }, ...STAGES.map((s) =>
@@ -33,7 +35,7 @@ export class HomeScreen implements Screen {
       });
       grid.append(card);
     }
-    for (let i = rooms.length; i < PLANNED_ROOMS; i++)
+    for (let i = ready.length; i < PLANNED_ROOMS; i++)
       grid.append(h('div', { class: 'room-card soon', html: ICON.lock }));
     const coins = h('div', { class: 'coins' }, h('span', { class: 'coin', html: COIN }), h('b', {}, String(app.progress.coins)));
     this.el = h('div', { class: 'screen home' }, h('div', { class: 'sky' }), h('div', { class: 'home-top' }, this.mo.el, coins), grid);

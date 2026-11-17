@@ -164,6 +164,166 @@
         "text": "a sink",
         "audio": "form.kitchen.sink.mp3"
       }
+    },
+    "bathroom.bathtub": {
+      "text": "bathtub",
+      "audio": "bathroom.bathtub.mp3",
+      "form": {
+        "text": "a bathtub",
+        "audio": "form.bathroom.bathtub.mp3"
+      }
+    },
+    "bathroom.shower": {
+      "text": "shower",
+      "audio": "bathroom.shower.mp3",
+      "form": {
+        "text": "a shower",
+        "audio": "form.bathroom.shower.mp3"
+      }
+    },
+    "bathroom.sink": {
+      "text": "sink",
+      "audio": "bathroom.sink.mp3",
+      "form": {
+        "text": "a sink",
+        "audio": "form.bathroom.sink.mp3"
+      }
+    },
+    "bathroom.faucet": {
+      "text": "faucet",
+      "audio": "bathroom.faucet.mp3",
+      "form": {
+        "text": "a faucet",
+        "audio": "form.bathroom.faucet.mp3"
+      }
+    },
+    "bathroom.toilet": {
+      "text": "toilet",
+      "audio": "bathroom.toilet.mp3",
+      "form": {
+        "text": "a toilet",
+        "audio": "form.bathroom.toilet.mp3"
+      }
+    },
+    "bathroom.mirror": {
+      "text": "mirror",
+      "audio": "bathroom.mirror.mp3",
+      "form": {
+        "text": "a mirror",
+        "audio": "form.bathroom.mirror.mp3"
+      }
+    },
+    "bathroom.towel": {
+      "text": "towel",
+      "audio": "bathroom.towel.mp3",
+      "form": {
+        "text": "a towel",
+        "audio": "form.bathroom.towel.mp3"
+      }
+    },
+    "bathroom.bath_mat": {
+      "text": "bath mat",
+      "audio": "bathroom.bath_mat.mp3",
+      "form": {
+        "text": "a bath mat",
+        "audio": "form.bathroom.bath_mat.mp3"
+      }
+    },
+    "bathroom.laundry_basket": {
+      "text": "laundry basket",
+      "audio": "bathroom.laundry_basket.mp3",
+      "form": {
+        "text": "a laundry basket",
+        "audio": "form.bathroom.laundry_basket.mp3"
+      }
+    },
+    "bathroom.stool": {
+      "text": "stool",
+      "audio": "bathroom.stool.mp3",
+      "form": {
+        "text": "a stool",
+        "audio": "form.bathroom.stool.mp3"
+      }
+    },
+    "bathroom.hook": {
+      "text": "hook",
+      "audio": "bathroom.hook.mp3",
+      "form": {
+        "text": "a hook",
+        "audio": "form.bathroom.hook.mp3"
+      }
+    },
+    "bathroom.soap": {
+      "text": "soap",
+      "audio": "bathroom.soap.mp3",
+      "form": {
+        "text": "soap",
+        "audio": "form.bathroom.soap.mp3"
+      }
+    },
+    "bathroom.toothbrush": {
+      "text": "toothbrush",
+      "audio": "bathroom.toothbrush.mp3",
+      "form": {
+        "text": "a toothbrush",
+        "audio": "form.bathroom.toothbrush.mp3"
+      }
+    },
+    "bathroom.toothpaste": {
+      "text": "toothpaste",
+      "audio": "bathroom.toothpaste.mp3",
+      "form": {
+        "text": "toothpaste",
+        "audio": "form.bathroom.toothpaste.mp3"
+      }
+    },
+    "bathroom.shampoo": {
+      "text": "shampoo",
+      "audio": "bathroom.shampoo.mp3",
+      "form": {
+        "text": "shampoo",
+        "audio": "form.bathroom.shampoo.mp3"
+      }
+    },
+    "bathroom.comb": {
+      "text": "comb",
+      "audio": "bathroom.comb.mp3",
+      "form": {
+        "text": "a comb",
+        "audio": "form.bathroom.comb.mp3"
+      }
+    },
+    "bathroom.hairbrush": {
+      "text": "hairbrush",
+      "audio": "bathroom.hairbrush.mp3",
+      "form": {
+        "text": "a hairbrush",
+        "audio": "form.bathroom.hairbrush.mp3"
+      }
+    },
+    "bathroom.washcloth": {
+      "text": "washcloth",
+      "audio": "bathroom.washcloth.mp3",
+      "form": {
+        "text": "a washcloth",
+        "audio": "form.bathroom.washcloth.mp3"
+      }
+    },
+    "bathroom.toilet_paper": {
+      "text": "toilet paper",
+      "audio": "bathroom.toilet_paper.mp3",
+      "form": {
+        "text": "toilet paper",
+        "audio": "form.bathroom.toilet_paper.mp3"
+      }
+    },
+    "bathroom.rubber_duck": {
+      "text": "rubber duck",
+      "audio": "bathroom.rubber_duck.mp3",
+      "form": {
+        "text": "a rubber duck",
+        "audio": "form.bathroom.rubber_duck.mp3"
+      }
     }
   },
   "phrases": {
@@ -346,6 +506,166 @@
     "check.where.kitchen.sink": {
       "text": "Where's the sink?",
       "audio": "check.where.kitchen.sink.mp3"
+    },
+    "check.show_me.bathroom.bathtub": {
+      "text": "Show me the bathtub!",
+      "audio": "check.show_me.bathroom.bathtub.mp3"
+    },
+    "check.where.bathroom.bathtub": {
+      "text": "Where's the bathtub?",
+      "audio": "check.where.bathroom.bathtub.mp3"
+    },
+    "check.show_me.bathroom.shower": {
+      "text": "Show me the shower!",
+      "audio": "check.show_me.bathroom.shower.mp3"
+    },
+    "check.where.bathroom.shower": {
+      "text": "Where's the shower?",
+      "audio": "check.where.bathroom.shower.mp3"
+    },
+    "check.show_me.bathroom.sink": {
+      "text": "Show me the sink!",
+      "audio": "check.show_me.bathroom.sink.mp3"
+    },
+    "check.where.bathroom.sink": {
+      "text": "Where's the sink?",
+      "audio": "check.where.bathroom.sink.mp3"
+    },
+    "check.show_me.bathroom.faucet": {
+      "text": "Show me the faucet!",
+      "audio": "check.show_me.bathroom.faucet.mp3"
+    },
+    "check.where.bathroom.faucet": {
+      "text": "Where's the faucet?",
+      "audio": "check.where.bathroom.faucet.mp3"
+    },
+    "check.show_me.bathroom.toilet": {
+      "text": "Show me the toilet!",
+      "audio": "check.show_me.bathroom.toilet.mp3"
+    },
+    "check.where.bathroom.toilet": {
+      "text": "Where's the toilet?",
+      "audio": "check.where.bathroom.toilet.mp3"
+    },
+    "check.show_me.bathroom.mirror": {
+      "text": "Show me the mirror!",
+      "audio": "check.show_me.bathroom.mirror.mp3"
+    },
+    "check.where.bathroom.mirror": {
+      "text": "Where's the mirror?",
+      "audio": "check.where.bathroom.mirror.mp3"
+    },
+    "check.show_me.bathroom.towel": {
+      "text": "Show me the towel!",
+      "audio": "check.show_me.bathroom.towel.mp3"
+    },
+    "check.where.bathroom.towel": {
+      "text": "Where's the towel?",
+      "audio": "check.where.bathroom.towel.mp3"
+    },
+    "check.show_me.bathroom.bath_mat": {
+      "text": "Show me the bath mat!",
+      "audio": "check.show_me.bathroom.bath_mat.mp3"
+    },
+    "check.where.bathroom.bath_mat": {
+      "text": "Where's the bath mat?",
+      "audio": "check.where.bathroom.bath_mat.mp3"
+    },
+    "check.show_me.bathroom.laundry_basket": {
+      "text": "Show me the laundry basket!",
+      "audio": "check.show_me.bathroom.laundry_basket.mp3"
+    },
+    "check.where.bathroom.laundry_basket": {
+      "text": "Where's the laundry basket?",
+      "audio": "check.where.bathroom.laundry_basket.mp3"
+    },
+    "check.show_me.bathroom.stool": {
+      "text": "Show me the stool!",
+      "audio": "check.show_me.bathroom.stool.mp3"
+    },
+    "check.where.bathroom.stool": {
+      "text": "Where's the stool?",
+      "audio": "check.where.bathroom.stool.mp3"
+    },
+    "check.show_me.bathroom.hook": {
+      "text": "Show me the hook!",
+      "audio": "check.show_me.bathroom.hook.mp3"
+    },
+    "check.where.bathroom.hook": {
+      "text": "Where's the hook?",
+      "audio": "check.where.bathroom.hook.mp3"
+    },
+    "check.show_me.bathroom.soap": {
+      "text": "Show me the soap!",
+      "audio": "check.show_me.bathroom.soap.mp3"
+    },
+    "check.where.bathroom.soap": {
+      "text": "Where's the soap?",
+      "audio": "check.where.bathroom.soap.mp3"
+    },
+    "check.show_me.bathroom.toothbrush": {
+      "text": "Show me the toothbrush!",
+      "audio": "check.show_me.bathroom.toothbrush.mp3"
+    },
+    "check.where.bathroom.toothbrush": {
+      "text": "Where's the toothbrush?",
+      "audio": "check.where.bathroom.toothbrush.mp3"
+    },
+    "check.show_me.bathroom.toothpaste": {
+      "text": "Show me the toothpaste!",
+      "audio": "check.show_me.bathroom.toothpaste.mp3"
+    },
+    "check.where.bathroom.toothpaste": {
+      "text": "Where's the toothpaste?",
+      "audio": "check.where.bathroom.toothpaste.mp3"
+    },
+    "check.show_me.bathroom.shampoo": {
+      "text": "Show me the shampoo!",
+      "audio": "check.show_me.bathroom.shampoo.mp3"
+    },
+    "check.where.bathroom.shampoo": {
+      "text": "Where's the shampoo?",
+      "audio": "check.where.bathroom.shampoo.mp3"
+    },
+    "check.show_me.bathroom.comb": {
+      "text": "Show me the comb!",
+      "audio": "check.show_me.bathroom.comb.mp3"
+    },
+    "check.where.bathroom.comb": {
+      "text": "Where's the comb?",
+      "audio": "check.where.bathroom.comb.mp3"
+    },
+    "check.show_me.bathroom.hairbrush": {
+      "text": "Show me the hairbrush!",
+      "audio": "check.show_me.bathroom.hairbrush.mp3"
+    },
+    "check.where.bathroom.hairbrush": {
+      "text": "Where's the hairbrush?",
+      "audio": "check.where.bathroom.hairbrush.mp3"
+    },
+    "check.show_me.bathroom.washcloth": {
+      "text": "Show me the washcloth!",
+      "audio": "check.show_me.bathroom.washcloth.mp3"
+    },
+    "check.where.bathroom.washcloth": {
+      "text": "Where's the washcloth?",
+      "audio": "check.where.bathroom.washcloth.mp3"
+    },
+    "check.show_me.bathroom.toilet_paper": {
+      "text": "Show me the toilet paper!",
+      "audio": "check.show_me.bathroom.toilet_paper.mp3"
+    },
+    "check.where.bathroom.toilet_paper": {
+      "text": "Where's the toilet paper?",
+      "audio": "check.where.bathroom.toilet_paper.mp3"
+    },
+    "check.show_me.bathroom.rubber_duck": {
+      "text": "Show me the rubber duck!",
+      "audio": "check.show_me.bathroom.rubber_duck.mp3"
+    },
+    "check.where.bathroom.rubber_duck": {
+      "text": "Where's the rubber duck?",
+      "audio": "check.where.bathroom.rubber_duck.mp3"
     }
   },
   "mo": {
@@ -430,6 +750,190 @@
     "action.kitchen.clean_up": {
       "text": "Time to clean up!",
       "audio": "action.kitchen.clean_up.mp3"
+    },
+    "action.bathroom.turn_on_water": {
+      "text": "Turn on the water.",
+      "audio": "action.bathroom.turn_on_water.mp3"
+    },
+    "action.bathroom.turn_off_water": {
+      "text": "Turn off the water.",
+      "audio": "action.bathroom.turn_off_water.mp3"
+    },
+    "action.bathroom.wash_hands": {
+      "text": "Wash your hands.",
+      "audio": "action.bathroom.wash_hands.mp3"
+    },
+    "action.bathroom.lather_up": {
+      "text": "Lather up!",
+      "audio": "action.bathroom.lather_up.mp3"
+    },
+    "action.bathroom.rinse_off": {
+      "text": "Rinse off.",
+      "audio": "action.bathroom.rinse_off.mp3"
+    },
+    "action.bathroom.dry_hands": {
+      "text": "Dry your hands.",
+      "audio": "action.bathroom.dry_hands.mp3"
+    },
+    "action.bathroom.brush_teeth": {
+      "text": "Brush your teeth.",
+      "audio": "action.bathroom.brush_teeth.mp3"
+    },
+    "action.bathroom.squeeze_toothpaste": {
+      "text": "Squeeze the toothpaste.",
+      "audio": "action.bathroom.squeeze_toothpaste.mp3"
+    },
+    "action.bathroom.spit_it_out": {
+      "text": "Spit it out.",
+      "audio": "action.bathroom.spit_it_out.mp3"
+    },
+    "action.bathroom.rinse_mouth": {
+      "text": "Rinse your mouth.",
+      "audio": "action.bathroom.rinse_mouth.mp3"
+    },
+    "action.bathroom.flush_toilet": {
+      "text": "Flush the toilet.",
+      "audio": "action.bathroom.flush_toilet.mp3"
+    },
+    "action.bathroom.hang_towel": {
+      "text": "Hang your towel on the hook.",
+      "audio": "action.bathroom.hang_towel.mp3"
+    },
+    "action.bathroom.put_towel_in_basket": {
+      "text": "Put your towel in the laundry basket.",
+      "audio": "action.bathroom.put_towel_in_basket.mp3"
+    },
+    "action.bathroom.time_for_bath": {
+      "text": "Time for a bath!",
+      "audio": "action.bathroom.time_for_bath.mp3"
     }
-  }
+  },
+  "matrix": {
+    "matrix.kitchen.01": {
+      "text": "This is my kitchen!",
+      "audio": "matrix.kitchen.01.mp3"
+    },
+    "matrix.kitchen.02": {
+      "text": "I love my kitchen.",
+      "audio": "matrix.kitchen.02.mp3"
+    },
+    "matrix.kitchen.03": {
+      "text": "I open the fridge.",
+      "audio": "matrix.kitchen.03.mp3"
+    },
+    "matrix.kitchen.04": {
+      "text": "Mmm, milk!",
+      "audio": "matrix.kitchen.04.mp3"
+    },
+    "matrix.kitchen.05": {
+      "text": "I close the fridge.",
+      "audio": "matrix.kitchen.05.mp3"
+    },
+    "matrix.kitchen.06": {
+      "text": "The pot is on the stove.",
+      "audio": "matrix.kitchen.06.mp3"
+    },
+    "matrix.kitchen.07": {
+      "text": "The frying pan is hot.",
+      "audio": "matrix.kitchen.07.mp3"
+    },
+    "matrix.kitchen.08": {
+      "text": "Something yummy is in the oven!",
+      "audio": "matrix.kitchen.08.mp3"
+    },
+    "matrix.kitchen.09": {
+      "text": "I look out the window.",
+      "audio": "matrix.kitchen.09.mp3"
+    },
+    "matrix.kitchen.10": {
+      "text": "What a nice day!",
+      "audio": "matrix.kitchen.10.mp3"
+    },
+    "matrix.kitchen.11": {
+      "text": "Now I set the table.",
+      "audio": "matrix.kitchen.11.mp3"
+    },
+    "matrix.kitchen.12": {
+      "text": "I put the placemat on the table.",
+      "audio": "matrix.kitchen.12.mp3"
+    },
+    "matrix.kitchen.13": {
+      "text": "I put the plate on the placemat.",
+      "audio": "matrix.kitchen.13.mp3"
+    },
+    "matrix.kitchen.14": {
+      "text": "Here is my fork, my knife and my spoon.",
+      "audio": "matrix.kitchen.14.mp3"
+    },
+    "matrix.kitchen.15": {
+      "text": "Here is my cup and my bowl.",
+      "audio": "matrix.kitchen.15.mp3"
+    },
+    "matrix.kitchen.16": {
+      "text": "I sit on my chair.",
+      "audio": "matrix.kitchen.16.mp3"
+    },
+    "matrix.kitchen.17": {
+      "text": "Yum, yum, yum!",
+      "audio": "matrix.kitchen.17.mp3"
+    },
+    "matrix.kitchen.18": {
+      "text": "All done!",
+      "audio": "matrix.kitchen.18.mp3"
+    },
+    "matrix.kitchen.19": {
+      "text": "Time to clean up!",
+      "audio": "matrix.kitchen.19.mp3"
+    },
+    "matrix.kitchen.20": {
+      "text": "I clear the table.",
+      "audio": "matrix.kitchen.20.mp3"
+    },
+    "matrix.kitchen.21": {
+      "text": "I scrape my plate into the trash can.",
+      "audio": "matrix.kitchen.21.mp3"
+    },
+    "matrix.kitchen.22": {
+      "text": "I load the dishwasher.",
+      "audio": "matrix.kitchen.22.mp3"
+    },
+    "matrix.kitchen.23": {
+      "text": "I wash the pot in the sink and dry it with the kitchen towel.",
+      "audio": "matrix.kitchen.23.mp3"
+    },
+    "matrix.kitchen.24": {
+      "text": "The cutting board goes back in its place.",
+      "audio": "matrix.kitchen.24.mp3"
+    },
+    "matrix.kitchen.25": {
+      "text": "I wipe the table.",
+      "audio": "matrix.kitchen.25.mp3"
+    },
+    "matrix.kitchen.26": {
+      "text": "I push in my chair.",
+      "audio": "matrix.kitchen.26.mp3"
+    },
+    "matrix.kitchen.27": {
+      "text": "Then I take out the trash.",
+      "audio": "matrix.kitchen.27.mp3"
+    },
+    "matrix.kitchen.28": {
+      "text": "Look! My kitchen is clean.",
+      "audio": "matrix.kitchen.28.mp3"
+    },
+    "matrix.kitchen.29": {
+      "text": "I always clean up after myself.",
+      "audio": "matrix.kitchen.29.mp3"
+    },
+    "matrix.kitchen.full": {
+      "text": "This is my kitchen! I love my kitchen. I open the fridge. Mmm, milk! I close the fridge. The pot is on the stove. The frying pan is hot. Something yummy is in the oven! I look out the window. What a nice day! Now I set the table. I put the placemat on the table. I put the plate on the placemat. Here is my fork, my knife and my spoon. Here is my cup and my bowl. I sit on my chair. Yum, yum, yum! All done! Time to clean up! I clear the table. I scrape my plate into the trash can. I load the dishwasher. I wash the pot in the sink and dry it with the kitchen towel. The cutting board goes back in its place. I wipe the table. I push in my chair. Then I take out the trash. Look! My kitchen is clean. I always clean up after myself.",
+      "audio": "matrix.kitchen.full.mp3"
+    }
+  },
+  "particles": [
+    "in",
+    "on",
+    "up",
+    "out"
+  ]
 }

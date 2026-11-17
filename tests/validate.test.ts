@@ -25,11 +25,12 @@ describe('валидатор пакетов', () => {
   });
 });
 
-describe('es-419 по таблице Герхарда', () => {
+describe('es-419 по таблице Герхарда (кухня; действия, матрица и ванная — позже)', () => {
   it('слова, формы и вопросы есть, артикли слова (el/la) и формы (un/una) верные', () => {
     const r = validateLang('es-419');
     // испанские фразы-действия и новые реплики Mo Герхард пришлёт отдельно
-    const pending = (id: string) => id.startsWith('action.') || id === 'mo.whats_next' || id === 'mo.now_you_tell_mo';
+    const pending = (id: string) =>
+      id.startsWith('action.') || id.startsWith('matrix.') || id.includes('bathroom.') || id === 'mo.whats_next' || id === 'mo.now_you_tell_mo';
     expect(r.errors.filter((e) => e.what !== 'audio' && !pending(e.id))).toEqual([]);
     expect(r.errors.filter((e) => e.what === 'text').map((e) => e.id)).toContain('action.kitchen.open_fridge');
   });
@@ -39,5 +40,13 @@ describe('структура комнат', () => {
   it('действия, состояния, пары и цепочка кухни согласованы', async () => {
     const { validateRooms } = await import('../scripts/validate-packs.ts');
     expect(validateRooms()).toEqual([]);
+  });
+});
+
+describe('текст-матрица', () => {
+  it('en-US: все предложения и целиком есть, слова кухни встречаются в своих предложениях', () => {
+    const r = validateLang('en-US');
+    expect(r.errors.filter((e) => e.id.startsWith('matrix.') && e.what !== 'audio')).toEqual([]);
+    expect(r.errors.map((e) => e.id)).toContain('matrix.kitchen.full'); // аудио целиком ещё нет
   });
 });
