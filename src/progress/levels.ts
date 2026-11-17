@@ -10,8 +10,12 @@ export type LevelMode = 'auto' | 'little' | 'big';
 
 export const levelOf = (w: Pick<WordDef, 'level'>): Level => w.level ?? 1;
 
+/** Слово уже есть на картинке (есть зона нажатия). Слова без зон — запись в пакете заведена, картинку ждём. */
+export const isPlaced = (w: Pick<WordDef, 'zones'>): boolean => Object.keys(w.zones ?? {}).length > 0;
+
+/** Предметы уровня 1, которые уже нарисованы: по ним открываются этапы и считается «N/N» комнаты. */
 export function coreWords(room: RoomDef): WordDef[] {
-  return room.words.filter((w) => levelOf(w) === 1);
+  return room.words.filter((w) => levelOf(w) === 1 && isPlaced(w));
 }
 
 /** До какого уровня открыта комната. */
@@ -55,6 +59,6 @@ export function wordsInScene(room: RoomDef, sceneId: string, level: Level): stri
  */
 export function checkPool(room: RoomDef, pm: Map<string, WordProgress>, level: Level): string[] {
   return room.words
-    .filter((w) => levelOf(w) === 1 || (levelOf(w) <= level && (pm.get(w.id)?.heard ?? 0) > 0))
+    .filter((w) => isPlaced(w) && (levelOf(w) === 1 || (levelOf(w) <= level && (pm.get(w.id)?.heard ?? 0) > 0)))
     .map((w) => w.id);
 }

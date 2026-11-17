@@ -51,6 +51,59 @@ export interface WordDef {
   sprite?: SpriteDef;
 }
 
+/** Картинка-состояние предмета: слой поверх сцены (как вырезка чашки) или целый кадр сцены. */
+export interface StateLayer {
+  scene: string;
+  image: string;
+  x?: number;
+  y?: number;
+  w?: number;
+  h?: number;
+}
+
+/** Состояния предмета: холодильник closed/open, стол set/cleared… Смена состояния = смена картинки + звук. */
+export interface ObjectStates {
+  initial: string;
+  values: string[];
+  /** Картинки состояний; начальное обычно уже нарисовано на сцене. Пусто — картинку ещё ждём. */
+  layers?: Record<string, StateLayer>;
+  /** Звук смены состояния: assets/sfx/<имя>.mp3 */
+  sfx?: Record<string, string>;
+}
+
+/** Предмет, который можно нажимать в действиях, но это не слово словаря (тряпка, кран). */
+export interface PropDef {
+  id: string;
+  zones: Record<string, Poly>;
+}
+
+/**
+ * Фраза-действие (метод TPR: команда → действие): «Open the fridge.»
+ * id — постоянный (kitchen.open_fridge); текст и аудио — в пакете: action.<id>.
+ */
+export interface ActionDef {
+  id: string;
+  /** Слова, которые «используются во фразе» (второй значок в отчёте). */
+  objects: string[];
+  /** Что нажать: шаги по порядку, в шаге — любой из вариантов. [["plate"],["placemat"]] — два нажатия. */
+  taps: string[][];
+  scene: string;
+  /** Состояния до действия (иначе фраза сейчас не к месту). */
+  requires?: Record<string, string>;
+  /** Состояния после действия. */
+  sets?: Record<string, string>;
+  /** Парная фраза с тем же предметом — для шага «Сам» (проверяется глагол). */
+  pair?: string;
+  /** Фраза запускает цепочку (Time to clean up!). */
+  chain?: string;
+}
+
+/** Цепочка действий: «Time to clean up!» → clear → scrape → load → wipe → trash. */
+export interface ChainDef {
+  id: string;
+  steps: string[];
+}
+
 export interface RoomDef {
   id: string;
   order: number;
@@ -62,6 +115,10 @@ export interface RoomDef {
   checkTypes: string[];
   words: WordDef[];
   stages: { phrases: { scene: string; choices: number } };
+  states?: Record<string, ObjectStates>;
+  props?: PropDef[];
+  actions?: ActionDef[];
+  chains?: ChainDef[];
 }
 
 export interface Line {
@@ -88,6 +145,8 @@ export interface Pack {
   phrases: Record<string, Line>;
   /** Реплики Mo и куски ответа на ошибку. */
   mo: Record<string, Line>;
+  /** Фразы-действия целиком: action.<id> → «Open the fridge.» */
+  actions?: Record<string, Line>;
 }
 
 export interface LanguageDef {

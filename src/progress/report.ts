@@ -2,6 +2,7 @@
 import type { RoomDef } from '../content/types.ts';
 import { addDays, daysBetween, weekStart, type Day } from './dates.ts';
 import type { DayStat } from './db.ts';
+import { coreWords } from './levels.ts';
 import { isDue, isLearned, type WordProgress } from './srs.ts';
 
 export interface Report {
@@ -58,7 +59,7 @@ export function buildReport(args: {
     minutesPerDay: activeDays.length ? Math.round(ms / 60000 / activeDays.length) : 0,
     // комната «13/13» — по предметам уровня 1; детали входят в общее «выучено» (130+)
     rooms: rooms.map((r) => {
-      const core = r.words.filter((w) => (w.level ?? 1) === 1);
+      const core = coreWords(r);
       return { id: r.id, icon: r.icon, learned: core.filter((w) => isLearned(pm.get(w.id))).length, total: core.length };
     }),
     repeatToday: words

@@ -71,11 +71,46 @@ export function validateLang(lang: string): LangReport {
     }
   }
   for (const id of exp.mo) count(lineIssues(id, pack.mo[id], pack));
+  for (const id of exp.actions) count(lineIssues(id, pack.actions?.[id], pack));
 
-  const known = new Set([...exp.words, ...exp.phrases.map((p) => p.id), ...exp.mo]);
-  for (const k of [...Object.keys(pack.words), ...Object.keys(pack.phrases), ...Object.keys(pack.mo)])
+  const known = new Set([...exp.words, ...exp.phrases.map((p) => p.id), ...exp.mo, ...exp.actions]);
+  for (const k of [...Object.keys(pack.words), ...Object.keys(pack.phrases), ...Object.keys(pack.mo), ...Object.keys(pack.actions ?? {})])
     if (!known.has(k)) rep.warnings.push({ id: k, what: 'extra', detail: 'запись не используется ни в одной комнате' });
   return rep;
+}
+
+/** Структура комнат: действия, состояния, пары и цепочки ссылаются на то, что есть. */
+export function validateRooms(): string[] {
+  const out: string[] = [];
+  for (const room of loadRooms(loadCatalog())) {
+    const words = new Set(room.words.map((w) => w.id));
+    const tappable = new Set([...words, ...(room.props ?? []).map((p) => p.id)]);
+    const states = room.states ?? {};
+    const actions = new Map((room.actions ?? []).map((a) => [a.id, a]));
+    const chains = new Map((room.chains ?? []).map((c) => [c.id, c]));
+    const stateOk = (m: Record<string, string> | undefined, where: string) => {
+      for (const [obj, v] of Object.entries(m ?? {}))
+        if (!states[obj]) out.push(`${where}: у ${obj} нет состояний`);
+        else if (!states[obj].values.includes(v)) out.push(`${where}: у ${obj} нет состояния «${v}»`);
+    };
+    for (const [obj, st] of Object.entries(states)) {
+      if (!tappable.has(obj)) out.push(`состояния: нет предмета ${obj}`);
+      if (!st.values.includes(st.initial)) out.push(`состояния ${obj}: начальное «${st.initial}» не в списке`);
+    }
+    for (const a of actions.values()) {
+      const w = `${room.id}/${a.id}`;
+      for (const o of a.objects) if (!words.has(o)) out.push(`${w}: нет слова ${o}`);
+      for (const step of a.taps) for (const t of step) if (!tappable.has(t)) out.push(`${w}: нечего нажать — ${t}`);
+      if (!room.scenes[a.scene]) out.push(`${w}: нет сцены ${a.scene}`);
+      stateOk(a.requires, w);
+      stateOk(a.sets, w);
+      if (a.pair && actions.get(a.pair)?.pair !== a.id) out.push(`${w}: пара ${a.pair} не взаимная`);
+      if (a.chain && !chains.has(a.chain)) out.push(`${w}: нет цепочки ${a.chain}`);
+      if (!a.chain && a.taps.length === 0) out.push(`${w}: не указано, что нажать`);
+    }
+    for (const c of chains.values()) for (const st of c.steps) if (!actions.has(st)) out.push(`${room.id}/${c.id}: нет шага ${st}`);
+  }
+  return out;
 }
 
 function main() {
@@ -101,7 +136,12 @@ function main() {
       for (const w of r.warnings.filter((w) => w.what !== 'second-question')) console.log(`  (предупреждение) ${w.id}: ${w.detail}`);
     }
   }
-  process.exit(reports.some((r) => r.errors.length) ? 1 : 0);
+  const roomIssues = validateRooms();
+  if (!json) console.log(roomIssues.length ? `\n✗ комнаты:\n  ${roomIssues.join('\n  ')}` : '\n✓ комнаты: действия, состояния, пары и цепочки согласованы');
+  // слова без зон — не ошибка: картинку дорисуют, запись в пакете заведена заранее
+  const unplaced = loadRooms(loadCatalog()).flatMap((r) => r.words.filter((w) => !Object.keys(w.zones ?? {}).length).map((w) => w.id));
+  if (!json && unplaced.length) console.log(`  (ждут картинку, без зон) ${unplaced.join(', ')}`);
+  process.exit(reports.some((r) => r.errors.length) || roomIssues.length ? 1 : 0);
 }
 
 if (import.meta.main ?? process.argv[1]?.endsWith('validate-packs.ts')) main();

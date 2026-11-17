@@ -69,6 +69,14 @@
         "audio": "form.kitchen.stove.mp3"
       }
     },
+    "kitchen.oven": {
+      "text": "",
+      "audio": "kitchen.oven.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.oven.mp3"
+      }
+    },
     "kitchen.window": {
       "text": "",
       "audio": "kitchen.window.mp3",
@@ -115,6 +123,54 @@
       "form": {
         "text": "",
         "audio": "form.kitchen.bowl.mp3"
+      }
+    },
+    "kitchen.placemat": {
+      "text": "",
+      "audio": "kitchen.placemat.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.placemat.mp3"
+      }
+    },
+    "kitchen.knife": {
+      "text": "",
+      "audio": "kitchen.knife.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.knife.mp3"
+      }
+    },
+    "kitchen.cutting_board": {
+      "text": "",
+      "audio": "kitchen.cutting_board.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.cutting_board.mp3"
+      }
+    },
+    "kitchen.trash_can": {
+      "text": "",
+      "audio": "kitchen.trash_can.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.trash_can.mp3"
+      }
+    },
+    "kitchen.dishwasher": {
+      "text": "",
+      "audio": "kitchen.dishwasher.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.dishwasher.mp3"
+      }
+    },
+    "kitchen.sink": {
+      "text": "",
+      "audio": "kitchen.sink.mp3",
+      "form": {
+        "text": "",
+        "audio": "form.kitchen.sink.mp3"
       }
     }
   },
@@ -174,6 +230,14 @@
     "check.where.kitchen.stove": {
       "text": "",
       "audio": "check.where.kitchen.stove.mp3"
+    },
+    "check.show_me.kitchen.oven": {
+      "text": "",
+      "audio": "check.show_me.kitchen.oven.mp3"
+    },
+    "check.where.kitchen.oven": {
+      "text": "",
+      "audio": "check.where.kitchen.oven.mp3"
     },
     "check.show_me.kitchen.window": {
       "text": "",
@@ -242,6 +306,54 @@
     "phrase.i_want.kitchen.bowl": {
       "text": "",
       "audio": "phrase.i_want.kitchen.bowl.mp3"
+    },
+    "check.show_me.kitchen.placemat": {
+      "text": "",
+      "audio": "check.show_me.kitchen.placemat.mp3"
+    },
+    "check.where.kitchen.placemat": {
+      "text": "",
+      "audio": "check.where.kitchen.placemat.mp3"
+    },
+    "check.show_me.kitchen.knife": {
+      "text": "",
+      "audio": "check.show_me.kitchen.knife.mp3"
+    },
+    "check.where.kitchen.knife": {
+      "text": "",
+      "audio": "check.where.kitchen.knife.mp3"
+    },
+    "check.show_me.kitchen.cutting_board": {
+      "text": "",
+      "audio": "check.show_me.kitchen.cutting_board.mp3"
+    },
+    "check.where.kitchen.cutting_board": {
+      "text": "",
+      "audio": "check.where.kitchen.cutting_board.mp3"
+    },
+    "check.show_me.kitchen.trash_can": {
+      "text": "",
+      "audio": "check.show_me.kitchen.trash_can.mp3"
+    },
+    "check.where.kitchen.trash_can": {
+      "text": "",
+      "audio": "check.where.kitchen.trash_can.mp3"
+    },
+    "check.show_me.kitchen.dishwasher": {
+      "text": "",
+      "audio": "check.show_me.kitchen.dishwasher.mp3"
+    },
+    "check.where.kitchen.dishwasher": {
+      "text": "",
+      "audio": "check.where.kitchen.dishwasher.mp3"
+    },
+    "check.show_me.kitchen.sink": {
+      "text": "",
+      "audio": "check.show_me.kitchen.sink.mp3"
+    },
+    "check.where.kitchen.sink": {
+      "text": "",
+      "audio": "check.where.kitchen.sink.mp3"
     }
   },
   "mo": {
@@ -264,6 +376,68 @@
     "mo.this_is": {
       "text": "",
       "audio": "mo.this_is.mp3"
+    },
+    "mo.whats_next": {
+      "text": "",
+      "audio": "mo.whats_next.mp3"
+    },
+    "mo.now_you_tell_mo": {
+      "text": "",
+      "audio": "mo.now_you_tell_mo.mp3"
+    }
+  },
+  "actions": {
+    "action.kitchen.open_fridge": {
+      "text": "",
+      "audio": "action.kitchen.open_fridge.mp3"
+    },
+    "action.kitchen.close_fridge": {
+      "text": "",
+      "audio": "action.kitchen.close_fridge.mp3"
+    },
+    "action.kitchen.push_in_chair": {
+      "text": "",
+      "audio": "action.kitchen.push_in_chair.mp3"
+    },
+    "action.kitchen.set_table": {
+      "text": "",
+      "audio": "action.kitchen.set_table.mp3"
+    },
+    "action.kitchen.put_plate_on_placemat": {
+      "text": "",
+      "audio": "action.kitchen.put_plate_on_placemat.mp3"
+    },
+    "action.kitchen.clear_table": {
+      "text": "",
+      "audio": "action.kitchen.clear_table.mp3"
+    },
+    "action.kitchen.wipe_table": {
+      "text": "",
+      "audio": "action.kitchen.wipe_table.mp3"
+    },
+    "action.kitchen.scrape_plate": {
+      "text": "",
+      "audio": "action.kitchen.scrape_plate.mp3"
+    },
+    "action.kitchen.load_dishwasher": {
+      "text": "",
+      "audio": "action.kitchen.load_dishwasher.mp3"
+    },
+    "action.kitchen.wash_dishes": {
+      "text": "",
+      "audio": "action.kitchen.wash_dishes.mp3"
+    },
+    "action.kitchen.dry_dishes": {
+      "text": "",
+      "audio": "action.kitchen.dry_dishes.mp3"
+    },
+    "action.kitchen.take_out_trash": {
+      "text": "",
+      "audio": "action.kitchen.take_out_trash.mp3"
+    },
+    "action.kitchen.clean_up": {
+      "text": "",
+      "audio": "action.kitchen.clean_up.mp3"
     }
   }
 }

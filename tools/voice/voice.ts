@@ -71,7 +71,7 @@ const chars = (t: string) => [...t].length;
 function entries(pack: Pack): [string, Line][] {
   const out: [string, Line][] = [];
   for (const [id, w] of Object.entries(pack.words)) out.push([id, w], [formId(id), w.form]);
-  out.push(...Object.entries(pack.phrases), ...Object.entries(pack.mo));
+  out.push(...Object.entries(pack.phrases), ...Object.entries(pack.actions ?? {}), ...Object.entries(pack.mo));
   return out;
 }
 

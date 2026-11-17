@@ -5,7 +5,8 @@ import { emptyProgress, onCorrect, type WordProgress } from '../src/progress/srs
 import { firstOpenStage, pickCheckTarget, pickPhraseTarget, stageStates, type ProgressMap } from '../src/progress/stages.ts';
 
 const R = room as unknown as RoomDef;
-const ids = R.words.map((w) => w.id);
+// по нарисованным словам (у недорисованных нет зон — они этапы не держат)
+const ids = R.words.filter((w) => Object.keys(w.zones).length).map((w) => w.id);
 const D = '2026-11-16';
 const mk = (f: (p: WordProgress) => WordProgress, only = ids): ProgressMap =>
   new Map(only.map((id) => [id, f(emptyProgress('en-US', 'kitchen', id))]));

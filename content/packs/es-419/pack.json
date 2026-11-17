@@ -71,6 +71,14 @@
         "audio": "form.kitchen.stove.mp3"
       }
     },
+    "kitchen.oven": {
+      "text": "el horno",
+      "audio": "kitchen.oven.mp3",
+      "form": {
+        "text": "un horno",
+        "audio": "form.kitchen.oven.mp3"
+      }
+    },
     "kitchen.window": {
       "text": "la ventana",
       "audio": "kitchen.window.mp3",
@@ -117,6 +125,54 @@
       "form": {
         "text": "un tazón",
         "audio": "form.kitchen.bowl.mp3"
+      }
+    },
+    "kitchen.placemat": {
+      "text": "el mantel individual",
+      "audio": "kitchen.placemat.mp3",
+      "form": {
+        "text": "un mantel individual",
+        "audio": "form.kitchen.placemat.mp3"
+      }
+    },
+    "kitchen.knife": {
+      "text": "el cuchillo",
+      "audio": "kitchen.knife.mp3",
+      "form": {
+        "text": "un cuchillo",
+        "audio": "form.kitchen.knife.mp3"
+      }
+    },
+    "kitchen.cutting_board": {
+      "text": "la tabla de cortar",
+      "audio": "kitchen.cutting_board.mp3",
+      "form": {
+        "text": "una tabla de cortar",
+        "audio": "form.kitchen.cutting_board.mp3"
+      }
+    },
+    "kitchen.trash_can": {
+      "text": "el bote de basura",
+      "audio": "kitchen.trash_can.mp3",
+      "form": {
+        "text": "un bote de basura",
+        "audio": "form.kitchen.trash_can.mp3"
+      }
+    },
+    "kitchen.dishwasher": {
+      "text": "el lavavajillas",
+      "audio": "kitchen.dishwasher.mp3",
+      "form": {
+        "text": "un lavavajillas",
+        "audio": "form.kitchen.dishwasher.mp3"
+      }
+    },
+    "kitchen.sink": {
+      "text": "el fregadero",
+      "audio": "kitchen.sink.mp3",
+      "form": {
+        "text": "un fregadero",
+        "audio": "form.kitchen.sink.mp3"
       }
     }
   },
@@ -176,6 +232,14 @@
     "check.where.kitchen.stove": {
       "text": "¿Dónde está la estufa?",
       "audio": "check.where.kitchen.stove.mp3"
+    },
+    "check.show_me.kitchen.oven": {
+      "text": "¡Muéstrame el horno!",
+      "audio": "check.show_me.kitchen.oven.mp3"
+    },
+    "check.where.kitchen.oven": {
+      "text": "¿Dónde está el horno?",
+      "audio": "check.where.kitchen.oven.mp3"
     },
     "check.show_me.kitchen.window": {
       "text": "¡Muéstrame la ventana!",
@@ -244,6 +308,54 @@
     "phrase.i_want.kitchen.bowl": {
       "text": "¡Quiero el tazón!",
       "audio": "phrase.i_want.kitchen.bowl.mp3"
+    },
+    "check.show_me.kitchen.placemat": {
+      "text": "¡Muéstrame el mantel individual!",
+      "audio": "check.show_me.kitchen.placemat.mp3"
+    },
+    "check.where.kitchen.placemat": {
+      "text": "¿Dónde está el mantel individual?",
+      "audio": "check.where.kitchen.placemat.mp3"
+    },
+    "check.show_me.kitchen.knife": {
+      "text": "¡Muéstrame el cuchillo!",
+      "audio": "check.show_me.kitchen.knife.mp3"
+    },
+    "check.where.kitchen.knife": {
+      "text": "¿Dónde está el cuchillo?",
+      "audio": "check.where.kitchen.knife.mp3"
+    },
+    "check.show_me.kitchen.cutting_board": {
+      "text": "¡Muéstrame la tabla de cortar!",
+      "audio": "check.show_me.kitchen.cutting_board.mp3"
+    },
+    "check.where.kitchen.cutting_board": {
+      "text": "¿Dónde está la tabla de cortar?",
+      "audio": "check.where.kitchen.cutting_board.mp3"
+    },
+    "check.show_me.kitchen.trash_can": {
+      "text": "¡Muéstrame el bote de basura!",
+      "audio": "check.show_me.kitchen.trash_can.mp3"
+    },
+    "check.where.kitchen.trash_can": {
+      "text": "¿Dónde está el bote de basura?",
+      "audio": "check.where.kitchen.trash_can.mp3"
+    },
+    "check.show_me.kitchen.dishwasher": {
+      "text": "¡Muéstrame el lavavajillas!",
+      "audio": "check.show_me.kitchen.dishwasher.mp3"
+    },
+    "check.where.kitchen.dishwasher": {
+      "text": "¿Dónde está el lavavajillas?",
+      "audio": "check.where.kitchen.dishwasher.mp3"
+    },
+    "check.show_me.kitchen.sink": {
+      "text": "¡Muéstrame el fregadero!",
+      "audio": "check.show_me.kitchen.sink.mp3"
+    },
+    "check.where.kitchen.sink": {
+      "text": "¿Dónde está el fregadero?",
+      "audio": "check.where.kitchen.sink.mp3"
     }
   },
   "mo": {
@@ -266,6 +378,68 @@
     "mo.this_is": {
       "text": "Esto es",
       "audio": "mo.this_is.mp3"
+    },
+    "mo.whats_next": {
+      "text": "",
+      "audio": "mo.whats_next.mp3"
+    },
+    "mo.now_you_tell_mo": {
+      "text": "",
+      "audio": "mo.now_you_tell_mo.mp3"
+    }
+  },
+  "actions": {
+    "action.kitchen.open_fridge": {
+      "text": "",
+      "audio": "action.kitchen.open_fridge.mp3"
+    },
+    "action.kitchen.close_fridge": {
+      "text": "",
+      "audio": "action.kitchen.close_fridge.mp3"
+    },
+    "action.kitchen.push_in_chair": {
+      "text": "",
+      "audio": "action.kitchen.push_in_chair.mp3"
+    },
+    "action.kitchen.set_table": {
+      "text": "",
+      "audio": "action.kitchen.set_table.mp3"
+    },
+    "action.kitchen.put_plate_on_placemat": {
+      "text": "",
+      "audio": "action.kitchen.put_plate_on_placemat.mp3"
+    },
+    "action.kitchen.clear_table": {
+      "text": "",
+      "audio": "action.kitchen.clear_table.mp3"
+    },
+    "action.kitchen.wipe_table": {
+      "text": "",
+      "audio": "action.kitchen.wipe_table.mp3"
+    },
+    "action.kitchen.scrape_plate": {
+      "text": "",
+      "audio": "action.kitchen.scrape_plate.mp3"
+    },
+    "action.kitchen.load_dishwasher": {
+      "text": "",
+      "audio": "action.kitchen.load_dishwasher.mp3"
+    },
+    "action.kitchen.wash_dishes": {
+      "text": "",
+      "audio": "action.kitchen.wash_dishes.mp3"
+    },
+    "action.kitchen.dry_dishes": {
+      "text": "",
+      "audio": "action.kitchen.dry_dishes.mp3"
+    },
+    "action.kitchen.take_out_trash": {
+      "text": "",
+      "audio": "action.kitchen.take_out_trash.mp3"
+    },
+    "action.kitchen.clean_up": {
+      "text": "",
+      "audio": "action.kitchen.clean_up.mp3"
     }
   }
 }

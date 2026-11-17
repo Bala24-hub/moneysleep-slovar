@@ -26,8 +26,18 @@ describe('валидатор пакетов', () => {
 });
 
 describe('es-419 по таблице Герхарда', () => {
-  it('все тексты есть, артикли слова (el/la) и формы (un/una) верные', () => {
+  it('слова, формы и вопросы есть, артикли слова (el/la) и формы (un/una) верные', () => {
     const r = validateLang('es-419');
-    expect(r.errors.filter((e) => e.what !== 'audio')).toEqual([]);
+    // испанские фразы-действия и новые реплики Mo Герхард пришлёт отдельно
+    const pending = (id: string) => id.startsWith('action.') || id === 'mo.whats_next' || id === 'mo.now_you_tell_mo';
+    expect(r.errors.filter((e) => e.what !== 'audio' && !pending(e.id))).toEqual([]);
+    expect(r.errors.filter((e) => e.what === 'text').map((e) => e.id)).toContain('action.kitchen.open_fridge');
+  });
+});
+
+describe('структура комнат', () => {
+  it('действия, состояния, пары и цепочка кухни согласованы', async () => {
+    const { validateRooms } = await import('../scripts/validate-packs.ts');
+    expect(validateRooms()).toEqual([]);
   });
 });

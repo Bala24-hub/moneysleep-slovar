@@ -734,80 +734,20 @@
       "zones": {
         "kitchen": [
           [
-            884,
-            331
-          ],
-          [
             855,
             372
           ],
           [
-            855,
-            543
-          ],
-          [
-            858,
-            546
-          ],
-          [
             856,
-            619
-          ],
-          [
-            866,
-            628
-          ],
-          [
-            869,
-            645
-          ],
-          [
-            878,
-            651
-          ],
-          [
-            900,
-            649
-          ],
-          [
-            904,
-            645
-          ],
-          [
-            907,
-            626
-          ],
-          [
-            1092,
-            626
-          ],
-          [
-            1098,
-            648
-          ],
-          [
-            1104,
-            651
-          ],
-          [
-            1126,
-            649
-          ],
-          [
-            1131,
-            641
-          ],
-          [
-            1132,
-            627
+            421
           ],
           [
             1140,
-            620
+            421
           ],
           [
-            1139,
-            368
+            1140,
+            370
           ],
           [
             1109,
@@ -842,16 +782,104 @@
             356
           ],
           [
-            936,
-            348
+            947,
+            351
           ],
           [
-            921,
-            340
+            928,
+            345
+          ],
+          [
+            914,
+            333
           ],
           [
             911,
             325
+          ],
+          [
+            904,
+            325
+          ],
+          [
+            895,
+            330
+          ],
+          [
+            884,
+            331
+          ]
+        ]
+      }
+    },
+    {
+      "id": "kitchen.oven",
+      "scene": "kitchen",
+      "zones": {
+        "kitchen": [
+          [
+            856,
+            420
+          ],
+          [
+            856,
+            619
+          ],
+          [
+            866,
+            628
+          ],
+          [
+            868,
+            643
+          ],
+          [
+            873,
+            649
+          ],
+          [
+            900,
+            649
+          ],
+          [
+            904,
+            645
+          ],
+          [
+            907,
+            626
+          ],
+          [
+            1092,
+            626
+          ],
+          [
+            1098,
+            648
+          ],
+          [
+            1104,
+            651
+          ],
+          [
+            1120,
+            651
+          ],
+          [
+            1129,
+            646
+          ],
+          [
+            1132,
+            627
+          ],
+          [
+            1140,
+            620
+          ],
+          [
+            1140,
+            420
           ]
         ]
       }
@@ -1908,6 +1936,173 @@
         "w": 258,
         "h": 235
       }
+    },
+    {
+      "id": "kitchen.placemat",
+      "scene": "kitchen.table",
+      "zones": {
+        "kitchen": [
+          [
+            761,
+            584
+          ],
+          [
+            756,
+            595
+          ],
+          [
+            742,
+            600
+          ],
+          [
+            392,
+            600
+          ],
+          [
+            380,
+            596
+          ],
+          [
+            374,
+            587
+          ],
+          [
+            375,
+            578
+          ],
+          [
+            406,
+            495
+          ],
+          [
+            414,
+            486
+          ],
+          [
+            424,
+            483
+          ],
+          [
+            713,
+            484
+          ],
+          [
+            723,
+            489
+          ],
+          [
+            728,
+            497
+          ]
+        ],
+        "kitchen.table": [
+          [
+            807,
+            156
+          ],
+          [
+            813,
+            187
+          ],
+          [
+            837,
+            594
+          ],
+          [
+            833,
+            610
+          ],
+          [
+            827,
+            621
+          ],
+          [
+            815,
+            633
+          ],
+          [
+            789,
+            643
+          ],
+          [
+            78,
+            643
+          ],
+          [
+            53,
+            634
+          ],
+          [
+            36,
+            616
+          ],
+          [
+            30,
+            600
+          ],
+          [
+            30,
+            567
+          ],
+          [
+            60,
+            176
+          ],
+          [
+            68,
+            153
+          ],
+          [
+            85,
+            136
+          ],
+          [
+            97,
+            130
+          ],
+          [
+            121,
+            126
+          ],
+          [
+            753,
+            126
+          ],
+          [
+            770,
+            128
+          ],
+          [
+            789,
+            136
+          ]
+        ]
+      }
+    },
+    {
+      "id": "kitchen.knife",
+      "scene": "kitchen",
+      "zones": {}
+    },
+    {
+      "id": "kitchen.cutting_board",
+      "scene": "kitchen",
+      "zones": {}
+    },
+    {
+      "id": "kitchen.trash_can",
+      "scene": "kitchen",
+      "zones": {}
+    },
+    {
+      "id": "kitchen.dishwasher",
+      "scene": "kitchen",
+      "zones": {}
+    },
+    {
+      "id": "kitchen.sink",
+      "scene": "kitchen",
+      "zones": {}
     }
   ],
   "stages": {
@@ -1915,5 +2110,323 @@
       "scene": "kitchen.table",
       "choices": 3
     }
-  }
+  },
+  "states": {
+    "kitchen.fridge": {
+      "initial": "closed",
+      "values": [
+        "closed",
+        "open"
+      ]
+    },
+    "kitchen.chair": {
+      "initial": "out",
+      "values": [
+        "out",
+        "in"
+      ]
+    },
+    "kitchen.table": {
+      "initial": "set",
+      "values": [
+        "empty",
+        "set",
+        "dirty",
+        "cleared",
+        "wiped"
+      ]
+    },
+    "kitchen.plate": {
+      "initial": "on_mat",
+      "values": [
+        "off_mat",
+        "on_mat",
+        "dirty",
+        "scraped"
+      ]
+    },
+    "kitchen.dishwasher": {
+      "initial": "closed",
+      "values": [
+        "closed",
+        "loaded"
+      ]
+    },
+    "kitchen.sink": {
+      "initial": "empty",
+      "values": [
+        "empty",
+        "dishes",
+        "washed",
+        "dried"
+      ]
+    },
+    "kitchen.trash_can": {
+      "initial": "full",
+      "values": [
+        "full",
+        "empty"
+      ]
+    }
+  },
+  "props": [
+    {
+      "id": "kitchen.cloth",
+      "zones": {}
+    }
+  ],
+  "actions": [
+    {
+      "id": "kitchen.open_fridge",
+      "objects": [
+        "kitchen.fridge"
+      ],
+      "taps": [
+        [
+          "kitchen.fridge"
+        ]
+      ],
+      "scene": "kitchen",
+      "requires": {
+        "kitchen.fridge": "closed"
+      },
+      "sets": {
+        "kitchen.fridge": "open"
+      },
+      "pair": "kitchen.close_fridge"
+    },
+    {
+      "id": "kitchen.close_fridge",
+      "objects": [
+        "kitchen.fridge"
+      ],
+      "taps": [
+        [
+          "kitchen.fridge"
+        ]
+      ],
+      "scene": "kitchen",
+      "requires": {
+        "kitchen.fridge": "open"
+      },
+      "sets": {
+        "kitchen.fridge": "closed"
+      },
+      "pair": "kitchen.open_fridge"
+    },
+    {
+      "id": "kitchen.push_in_chair",
+      "objects": [
+        "kitchen.chair"
+      ],
+      "taps": [
+        [
+          "kitchen.chair"
+        ]
+      ],
+      "scene": "kitchen",
+      "requires": {
+        "kitchen.chair": "out"
+      },
+      "sets": {
+        "kitchen.chair": "in"
+      }
+    },
+    {
+      "id": "kitchen.set_table",
+      "objects": [
+        "kitchen.table"
+      ],
+      "taps": [
+        [
+          "kitchen.table",
+          "kitchen.placemat"
+        ]
+      ],
+      "scene": "kitchen.table",
+      "requires": {
+        "kitchen.table": "empty"
+      },
+      "sets": {
+        "kitchen.table": "set"
+      }
+    },
+    {
+      "id": "kitchen.put_plate_on_placemat",
+      "objects": [
+        "kitchen.plate",
+        "kitchen.placemat"
+      ],
+      "taps": [
+        [
+          "kitchen.plate"
+        ],
+        [
+          "kitchen.placemat"
+        ]
+      ],
+      "scene": "kitchen.table",
+      "requires": {
+        "kitchen.plate": "off_mat"
+      },
+      "sets": {
+        "kitchen.plate": "on_mat"
+      }
+    },
+    {
+      "id": "kitchen.clear_table",
+      "objects": [
+        "kitchen.table"
+      ],
+      "taps": [
+        [
+          "kitchen.plate",
+          "kitchen.cup",
+          "kitchen.bowl"
+        ]
+      ],
+      "scene": "kitchen.table",
+      "requires": {
+        "kitchen.table": "dirty"
+      },
+      "sets": {
+        "kitchen.table": "cleared"
+      },
+      "pair": "kitchen.wipe_table"
+    },
+    {
+      "id": "kitchen.wipe_table",
+      "objects": [
+        "kitchen.table"
+      ],
+      "taps": [
+        [
+          "kitchen.cloth"
+        ]
+      ],
+      "scene": "kitchen.table",
+      "requires": {
+        "kitchen.table": "cleared"
+      },
+      "sets": {
+        "kitchen.table": "wiped"
+      },
+      "pair": "kitchen.clear_table"
+    },
+    {
+      "id": "kitchen.scrape_plate",
+      "objects": [
+        "kitchen.plate",
+        "kitchen.trash_can"
+      ],
+      "taps": [
+        [
+          "kitchen.plate"
+        ],
+        [
+          "kitchen.trash_can"
+        ]
+      ],
+      "scene": "kitchen",
+      "requires": {
+        "kitchen.plate": "dirty"
+      },
+      "sets": {
+        "kitchen.plate": "scraped"
+      }
+    },
+    {
+      "id": "kitchen.load_dishwasher",
+      "objects": [
+        "kitchen.dishwasher"
+      ],
+      "taps": [
+        [
+          "kitchen.dishwasher"
+        ]
+      ],
+      "scene": "kitchen",
+      "requires": {
+        "kitchen.dishwasher": "closed"
+      },
+      "sets": {
+        "kitchen.dishwasher": "loaded"
+      }
+    },
+    {
+      "id": "kitchen.wash_dishes",
+      "objects": [
+        "kitchen.sink"
+      ],
+      "taps": [
+        [
+          "kitchen.sink"
+        ]
+      ],
+      "scene": "kitchen",
+      "requires": {
+        "kitchen.sink": "dishes"
+      },
+      "sets": {
+        "kitchen.sink": "washed"
+      },
+      "pair": "kitchen.dry_dishes"
+    },
+    {
+      "id": "kitchen.dry_dishes",
+      "objects": [
+        "kitchen.kitchen_towel"
+      ],
+      "taps": [
+        [
+          "kitchen.kitchen_towel"
+        ]
+      ],
+      "scene": "kitchen",
+      "requires": {
+        "kitchen.sink": "washed"
+      },
+      "sets": {
+        "kitchen.sink": "dried"
+      },
+      "pair": "kitchen.wash_dishes"
+    },
+    {
+      "id": "kitchen.take_out_trash",
+      "objects": [
+        "kitchen.trash_can"
+      ],
+      "taps": [
+        [
+          "kitchen.trash_can"
+        ]
+      ],
+      "scene": "kitchen",
+      "requires": {
+        "kitchen.trash_can": "full"
+      },
+      "sets": {
+        "kitchen.trash_can": "empty"
+      }
+    },
+    {
+      "id": "kitchen.clean_up",
+      "objects": [],
+      "taps": [],
+      "scene": "kitchen",
+      "chain": "kitchen.clean_up"
+    }
+  ],
+  "chains": [
+    {
+      "id": "kitchen.clean_up",
+      "steps": [
+        "kitchen.clear_table",
+        "kitchen.scrape_plate",
+        "kitchen.load_dishwasher",
+        "kitchen.wipe_table",
+        "kitchen.take_out_trash"
+      ]
+    }
+  ]
 }

@@ -37,6 +37,7 @@ SCENES = {
         'kitchen.spoon':           (660, 482, 722, 590),
         'kitchen.pot':             (872, 208, 1128, 360),
         'kitchen.stove':           (852, 322, 1146, 656),
+        'kitchen.placemat':        (370, 480, 766, 604),
     }),
     'kitchen.table': ('assets/scenes/kitchen_table.jpg', {
         'kitchen.fork':  (122, 200, 244, 534),
@@ -44,6 +45,7 @@ SCENES = {
         'kitchen.spoon': (632, 200, 764, 534),
         'kitchen.cup':   (850, 104, 1104, 334),
         'kitchen.bowl':  (848, 358, 1112, 600),
+        'kitchen.placemat': (22, 118, 866, 652),
     }),
 }
 # Уточнение по цвету (OpenCV HSV: H 0..180)
@@ -53,6 +55,7 @@ COLOR = {
     ('kitchen', 'kitchen.plate'): lambda H, S, V: ((H <= 14) | (H >= 170)) & (S > 70),
     'chair': lambda H, S, V: (H >= 8) & (H <= 32) & (S > 125),
     'pot': lambda H, S, V: (H >= 3) & (H <= 22) & (S > 110),
+    'placemat': lambda H, S, V: (H >= 25) & (H <= 60) & (S > 60),
 }
 
 
@@ -78,6 +81,9 @@ def segment(img, scene, wid, rect):
     if n > 1:
         m = np.where(lab == 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA]), 255, 0).astype(np.uint8)
     cnts, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    if wid.endswith('placemat'):
+        # коврик прямоугольный, а тарелка выходит за его край — берём выпуклую оболочку
+        cnts = [cv2.convexHull(np.vstack(cnts))]
     filled = np.zeros_like(m)
     cv2.drawContours(filled, cnts, -1, 255, -1)
     c = max(cnts, key=cv2.contourArea)
@@ -97,6 +103,21 @@ for scene, (path, items) in SCENES.items():
         masks[(scene, wid)], polys[(scene, wid)] = segment(img, scene, wid, rect)
 for key, poly in MANUAL.items():
     polys[key] = poly
+
+
+def poly_of(mask):
+    cnts, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    return cv2.approxPolyDP(max(cnts, key=cv2.contourArea), 2.0, True)[:, 0, :].tolist()
+
+
+# Плита на картинке — целиком; делим: верх (конфорки и ручки) — stove, низ (дверца) — oven.
+STOVE_SPLIT_Y = 422
+_st = masks[('kitchen', 'kitchen.stove')]
+_top, _bot = _st.copy(), _st.copy()
+_top[STOVE_SPLIT_Y:] = 0
+_bot[:STOVE_SPLIT_Y - 2] = 0
+masks[('kitchen', 'kitchen.stove')], polys[('kitchen', 'kitchen.stove')] = _top, poly_of(_top)
+masks[('kitchen', 'kitchen.oven')], polys[('kitchen', 'kitchen.oven')] = _bot, poly_of(_bot)
 
 # ---------------------------------------------------------------- белые углы
 def fill_corners(img, r=80):

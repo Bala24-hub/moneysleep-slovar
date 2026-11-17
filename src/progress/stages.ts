@@ -4,6 +4,7 @@
 import type { RoomDef } from '../content/types.ts';
 import { isDue, isLearned, type WordProgress } from './srs.ts';
 import type { Day } from './dates.ts';
+import { coreWords } from './levels.ts';
 
 export type StageId = 'words' | 'check' | 'phrases';
 export const STAGES: StageId[] = ['words', 'check', 'phrases'];
@@ -18,12 +19,12 @@ export interface StageState {
 export type ProgressMap = Map<string, WordProgress>;
 
 export function phraseWords(room: RoomDef) {
-  return room.words.filter((w) => (w.phrases ?? []).length > 0 && (w.level ?? 1) === 1);
+  return coreWords(room).filter((w) => (w.phrases ?? []).length > 0);
 }
 
 /** Этапы открываются по предметам уровня 1 (13 в комнате); детали уровня 2 их не закрывают. */
 export function stageStates(room: RoomDef, pm: ProgressMap): Record<StageId, StageState> {
-  const core = room.words.filter((w) => (w.level ?? 1) === 1);
+  const core = coreWords(room);
   const total = core.length;
   const heard = core.filter((w) => (pm.get(w.id)?.heard ?? 0) > 0).length;
   const learned = core.filter((w) => isLearned(pm.get(w.id))).length;

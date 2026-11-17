@@ -61,6 +61,14 @@
         "audio": "form.kitchen.stove.mp3"
       }
     },
+    "kitchen.oven": {
+      "text": "oven",
+      "audio": "kitchen.oven.mp3",
+      "form": {
+        "text": "an oven",
+        "audio": "form.kitchen.oven.mp3"
+      }
+    },
     "kitchen.window": {
       "text": "window",
       "audio": "kitchen.window.mp3",
@@ -107,6 +115,54 @@
       "form": {
         "text": "a bowl",
         "audio": "form.kitchen.bowl.mp3"
+      }
+    },
+    "kitchen.placemat": {
+      "text": "placemat",
+      "audio": "kitchen.placemat.mp3",
+      "form": {
+        "text": "a placemat",
+        "audio": "form.kitchen.placemat.mp3"
+      }
+    },
+    "kitchen.knife": {
+      "text": "knife",
+      "audio": "kitchen.knife.mp3",
+      "form": {
+        "text": "a knife",
+        "audio": "form.kitchen.knife.mp3"
+      }
+    },
+    "kitchen.cutting_board": {
+      "text": "cutting board",
+      "audio": "kitchen.cutting_board.mp3",
+      "form": {
+        "text": "a cutting board",
+        "audio": "form.kitchen.cutting_board.mp3"
+      }
+    },
+    "kitchen.trash_can": {
+      "text": "trash can",
+      "audio": "kitchen.trash_can.mp3",
+      "form": {
+        "text": "a trash can",
+        "audio": "form.kitchen.trash_can.mp3"
+      }
+    },
+    "kitchen.dishwasher": {
+      "text": "dishwasher",
+      "audio": "kitchen.dishwasher.mp3",
+      "form": {
+        "text": "a dishwasher",
+        "audio": "form.kitchen.dishwasher.mp3"
+      }
+    },
+    "kitchen.sink": {
+      "text": "sink",
+      "audio": "kitchen.sink.mp3",
+      "form": {
+        "text": "a sink",
+        "audio": "form.kitchen.sink.mp3"
       }
     }
   },
@@ -166,6 +222,14 @@
     "check.where.kitchen.stove": {
       "text": "Where's the stove?",
       "audio": "check.where.kitchen.stove.mp3"
+    },
+    "check.show_me.kitchen.oven": {
+      "text": "Show me the oven!",
+      "audio": "check.show_me.kitchen.oven.mp3"
+    },
+    "check.where.kitchen.oven": {
+      "text": "Where's the oven?",
+      "audio": "check.where.kitchen.oven.mp3"
     },
     "check.show_me.kitchen.window": {
       "text": "Show me the window!",
@@ -234,6 +298,54 @@
     "phrase.i_want.kitchen.bowl": {
       "text": "I want the bowl!",
       "audio": "phrase.i_want.kitchen.bowl.mp3"
+    },
+    "check.show_me.kitchen.placemat": {
+      "text": "Show me the placemat!",
+      "audio": "check.show_me.kitchen.placemat.mp3"
+    },
+    "check.where.kitchen.placemat": {
+      "text": "Where's the placemat?",
+      "audio": "check.where.kitchen.placemat.mp3"
+    },
+    "check.show_me.kitchen.knife": {
+      "text": "Show me the knife!",
+      "audio": "check.show_me.kitchen.knife.mp3"
+    },
+    "check.where.kitchen.knife": {
+      "text": "Where's the knife?",
+      "audio": "check.where.kitchen.knife.mp3"
+    },
+    "check.show_me.kitchen.cutting_board": {
+      "text": "Show me the cutting board!",
+      "audio": "check.show_me.kitchen.cutting_board.mp3"
+    },
+    "check.where.kitchen.cutting_board": {
+      "text": "Where's the cutting board?",
+      "audio": "check.where.kitchen.cutting_board.mp3"
+    },
+    "check.show_me.kitchen.trash_can": {
+      "text": "Show me the trash can!",
+      "audio": "check.show_me.kitchen.trash_can.mp3"
+    },
+    "check.where.kitchen.trash_can": {
+      "text": "Where's the trash can?",
+      "audio": "check.where.kitchen.trash_can.mp3"
+    },
+    "check.show_me.kitchen.dishwasher": {
+      "text": "Show me the dishwasher!",
+      "audio": "check.show_me.kitchen.dishwasher.mp3"
+    },
+    "check.where.kitchen.dishwasher": {
+      "text": "Where's the dishwasher?",
+      "audio": "check.where.kitchen.dishwasher.mp3"
+    },
+    "check.show_me.kitchen.sink": {
+      "text": "Show me the sink!",
+      "audio": "check.show_me.kitchen.sink.mp3"
+    },
+    "check.where.kitchen.sink": {
+      "text": "Where's the sink?",
+      "audio": "check.where.kitchen.sink.mp3"
     }
   },
   "mo": {
@@ -256,6 +368,68 @@
     "mo.this_is": {
       "text": "This is",
       "audio": "mo.this_is.mp3"
+    },
+    "mo.whats_next": {
+      "text": "What's next?",
+      "audio": "mo.whats_next.mp3"
+    },
+    "mo.now_you_tell_mo": {
+      "text": "Now you tell Mo!",
+      "audio": "mo.now_you_tell_mo.mp3"
+    }
+  },
+  "actions": {
+    "action.kitchen.open_fridge": {
+      "text": "Open the fridge.",
+      "audio": "action.kitchen.open_fridge.mp3"
+    },
+    "action.kitchen.close_fridge": {
+      "text": "Close the fridge.",
+      "audio": "action.kitchen.close_fridge.mp3"
+    },
+    "action.kitchen.push_in_chair": {
+      "text": "Push in your chair.",
+      "audio": "action.kitchen.push_in_chair.mp3"
+    },
+    "action.kitchen.set_table": {
+      "text": "Set the table.",
+      "audio": "action.kitchen.set_table.mp3"
+    },
+    "action.kitchen.put_plate_on_placemat": {
+      "text": "Put the plate on the placemat.",
+      "audio": "action.kitchen.put_plate_on_placemat.mp3"
+    },
+    "action.kitchen.clear_table": {
+      "text": "Clear the table.",
+      "audio": "action.kitchen.clear_table.mp3"
+    },
+    "action.kitchen.wipe_table": {
+      "text": "Wipe the table.",
+      "audio": "action.kitchen.wipe_table.mp3"
+    },
+    "action.kitchen.scrape_plate": {
+      "text": "Scrape your plate into the trash.",
+      "audio": "action.kitchen.scrape_plate.mp3"
+    },
+    "action.kitchen.load_dishwasher": {
+      "text": "Load the dishwasher.",
+      "audio": "action.kitchen.load_dishwasher.mp3"
+    },
+    "action.kitchen.wash_dishes": {
+      "text": "Wash the dishes.",
+      "audio": "action.kitchen.wash_dishes.mp3"
+    },
+    "action.kitchen.dry_dishes": {
+      "text": "Dry the dishes.",
+      "audio": "action.kitchen.dry_dishes.mp3"
+    },
+    "action.kitchen.take_out_trash": {
+      "text": "Time to take out the trash!",
+      "audio": "action.kitchen.take_out_trash.mp3"
+    },
+    "action.kitchen.clean_up": {
+      "text": "Time to clean up!",
+      "audio": "action.kitchen.clean_up.mp3"
     }
   }
 }

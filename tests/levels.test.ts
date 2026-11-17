@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import kitchen from '../content/rooms/kitchen.json';
 import type { RoomDef } from '../src/content/types.ts';
-import { checkPool, childScenes, maxLevel, openerScene, sceneChain, wordsInScene } from '../src/progress/levels.ts';
+import { checkPool, childScenes, coreWords, maxLevel, openerScene, sceneChain, wordsInScene } from '../src/progress/levels.ts';
 import { emptyProgress, onCorrect, type WordProgress } from '../src/progress/srs.ts';
 import { stageStates } from '../src/progress/stages.ts';
 
@@ -23,14 +23,23 @@ const R: RoomDef = {
   ],
 };
 const D = '2026-11-16';
-const core = base.words.map((w) => w.id);
+const core = coreWords(base).map((w) => w.id);
 const pmOf = (f: (id: string) => WordProgress) => new Map(R.words.map((w) => [w.id, f(w.id)]));
 const fresh = (id: string) => emptyProgress('en-US', 'kitchen', id);
 
 describe('уровни', () => {
-  it('в кухне 13 предметов уровня 1', () => {
-    expect(core).toHaveLength(13);
+  it('в кухне 20 слов уровня 1, из них 15 уже на картинке', () => {
+    expect(base.words).toHaveLength(20);
     expect(base.words.every((w) => (w.level ?? 1) === 1)).toBe(true);
+    expect(coreWords(base)).toHaveLength(15);
+  });
+
+  it('слова без зон не мешают: этапы открываются по нарисованным', () => {
+    const placed = coreWords(base).map((w) => w.id);
+    const heard = new Map(placed.map((id) => [id, { ...fresh(id), heard: 1 }]));
+    const st = stageStates(base, heard);
+    expect([st.words.done, st.words.total, st.check.unlocked]).toEqual([true, 15, true]);
+    expect(checkPool(base, heard, 1)).not.toContain('kitchen.sink');
   });
 
   it('уровень 2 открывается, когда выучены все предметы уровня 1', () => {
@@ -50,7 +59,7 @@ describe('уровни', () => {
   it('детали не мешают этапам: этапы считаются по 13 предметам', () => {
     const heard = pmOf((id) => (core.includes(id) ? { ...fresh(id), heard: 1 } : fresh(id)));
     const st = stageStates(R, heard);
-    expect([st.words.done, st.words.total, st.check.unlocked]).toEqual([true, 13, true]);
+    expect([st.words.done, st.words.total, st.check.unlocked]).toEqual([true, 15, true]);
   });
 
   it('в «Проверке» детали спрашиваются только после прослушивания', () => {
@@ -77,7 +86,7 @@ describe('вложенные сцены', () => {
   it('в сцене нажимаются только слова открытого уровня', () => {
     expect(wordsInScene(R, 'kitchen.fridge.inside', 1)).toEqual([]);
     expect(wordsInScene(R, 'kitchen.fridge.inside', 2)).toEqual(['kitchen.freezer', 'kitchen.shelf']);
-    expect(wordsInScene(R, 'kitchen', 1)).toHaveLength(13);
+    expect(wordsInScene(R, 'kitchen', 1)).toHaveLength(15); // все нарисованные; у предметов стола зоны есть и в комнате (для наезда)
   });
 
   it('цикл в сценах — ошибка', () => {
